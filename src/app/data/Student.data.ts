@@ -15,7 +15,7 @@ export interface Student {
   Email: string;
   Field_of_study: Student_Fields;
   subjectids: number[];
-  subjects: Sujbect[];
+  subject_list: Sujbect[];
   deleted: boolean;
 }
 
@@ -28,7 +28,7 @@ export class StudentTable {
       Email: 'Name1@email.com',
       Field_of_study: Student_Fields.Programtervező_informatikus_Bsc,
       subjectids: [1],
-      subjects: [],
+      subject_list: [],
       deleted: false,
     },
     {
@@ -38,7 +38,7 @@ export class StudentTable {
       Email: 'Name2@email.com',
       Field_of_study: Student_Fields.Programtervező_informatikus_Msc,
       subjectids: [2],
-      subjects: [],
+      subject_list: [],
       deleted: false,
     },
   ];
@@ -48,7 +48,7 @@ export class StudentTable {
       const subject = SujbectTable.subjects.find(
         (a) => a.id === student.subjectids[x]
       );
-      if (subject != undefined) student.subjects.push(subject);
+      if (subject != undefined) student.subject_list.push(subject);
     });
     return student;
   });
