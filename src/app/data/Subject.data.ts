@@ -56,7 +56,7 @@ export class SujbectTable {
 
   public static subjects: Sujbect[] = SujbectTable._subject.map((subject) => {
     subject.teacherids.forEach((x) => {
-      const teacher = TeacherTable._teachers.find(
+      const teacher = TeacherTable.teachers.find(
         (a) => a.id === subject.teacherids[x]
       );
       if (teacher != undefined) subject.teachers.push(teacher);

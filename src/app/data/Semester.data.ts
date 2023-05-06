@@ -35,7 +35,7 @@ export class SemesterTable {
   public static semesters: Semester[] = SemesterTable._semesters.map(
     (semester) => {
       semester.subjectids.forEach((x) => {
-        const subject = SujbectTable._subject.find(
+        const subject = SujbectTable.subjects.find(
           (a) => a.id === semester.subjectids[x]
         );
         if (subject != undefined) semester.subjects.push(subject);
