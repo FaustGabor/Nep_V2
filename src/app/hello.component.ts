@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
     <h2>Hello {{name}}!</h2>
     <nav>
       <ul>
-        <li><a mat-button routerLink="/events">
+        <li><a mat-button routerLink="/semester">
             <b>Events</b>
           </a></li>
            <li><a mat-button routerLink="/books">
@@ -18,8 +18,8 @@ import { Component, Input } from '@angular/core';
       </ul>
     </nav>
   </mat-card>`,
-  styles: [`h1 { font-family: Lato; }`]
+  styles: [`h1 { font-family: Lato; }`],
 })
-export class HelloComponent  {
+export class HelloComponent {
   @Input() name: string;
 }

@@ -1,4 +1,4 @@
-import { Sujbect, SujbectTable } from './Subject.data';
+import { Subject, SubjectTable } from './Subject.data';
 
 export interface Semester {
   id: number;
@@ -6,7 +6,7 @@ export interface Semester {
   Start_date: Date;
   End_date: Date;
   subjectids: number[];
-  subjects: Sujbect[];
+  subjects: Subject[];
   deleted: boolean;
 }
 
@@ -35,7 +35,7 @@ export class SemesterTable {
   public static semesters: Semester[] = SemesterTable._semesters.map(
     (semester) => {
       semester.subjectids.forEach((x) => {
-        const subject = SujbectTable.subjects.find(
+        const subject = SubjectTable._subject.find(
           (a) => a.id === semester.subjectids[x]
         );
         if (subject != undefined) semester.subjects.push(subject);

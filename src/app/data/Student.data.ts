@@ -1,4 +1,4 @@
-import { Sujbect, SujbectTable } from './Subject.data';
+import { Subject, SubjectTable } from './Subject.data';
 
 export enum Student_Fields {
   Mérnökinformatikus_Msc = 'Mérnökinformatikus_Msc',
@@ -15,7 +15,7 @@ export interface Student {
   Email: string;
   Field_of_study: Student_Fields;
   subjectids: number[];
-  subject_list: Sujbect[];
+  subjects: Subject[];
   deleted: boolean;
 }
 
@@ -28,7 +28,7 @@ export class StudentTable {
       Email: 'Name1@email.com',
       Field_of_study: Student_Fields.Programtervező_informatikus_Bsc,
       subjectids: [1],
-      subject_list: [],
+      subjects: [],
       deleted: false,
     },
     {
@@ -38,17 +38,17 @@ export class StudentTable {
       Email: 'Name2@email.com',
       Field_of_study: Student_Fields.Programtervező_informatikus_Msc,
       subjectids: [2],
-      subject_list: [],
+      subjects: [],
       deleted: false,
     },
   ];
 
   public static students: Student[] = StudentTable._student.map((student) => {
     student.subjectids.forEach((x) => {
-      const subject = SujbectTable.subjects.find(
+      const subject = SubjectTable._subject.find(
         (a) => a.id === student.subjectids[x]
       );
-      if (subject != undefined) student.subject_list.push(subject);
+      if (subject != undefined) student.subjects.push(subject);
     });
     return student;
   });

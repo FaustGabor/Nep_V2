@@ -9,7 +9,7 @@ export enum Subject_Department {
   egyéb = 'egyéb',
 }
 
-export interface Sujbect {
+export interface Subject {
   id: number;
   Name: string;
   Code: string;
@@ -24,15 +24,15 @@ export interface Sujbect {
   deleted: boolean;
 }
 
-export class SujbectTable {
-  public static _subject: Sujbect[] = [
+export class SubjectTable {
+  public static _subject: Subject[] = [
     {
       id: 1,
       Name: 'Prog1',
       Code: 'code1',
       Credit: 5,
       Department: Subject_Department.egyéb,
-      teacherids: [1],
+      teacherids: [1, 2],
       studentids: [1],
       teachers: [],
       students: [],
@@ -54,26 +54,26 @@ export class SujbectTable {
     },
   ];
 
-  public static subjects: Sujbect[] = SujbectTable._subject.map((subject) => {
+  public static subjects: Subject[] = SubjectTable._subject.map((subject) => {
     subject.teacherids.forEach((x) => {
-      const teacher = TeacherTable.teachers.find(
+      const teacher = TeacherTable._teachers.find(
         (a) => a.id === subject.teacherids[x]
       );
       if (teacher != undefined) subject.teachers.push(teacher);
     });
 
     subject.studentids.forEach((x) => {
-      const student = StudentTable.students.find(
+      const student = StudentTable._student.find(
         (a) => a.id === subject.studentids[x]
       );
       if (student != undefined) subject.students.push(student);
     });
 
-    const semester = SemesterTable.semesters.find(
+    const semester = SemesterTable._semesters.find(
       (a) => a.id === subject.semesterId
     );
-
     subject.semester = semester;
+
     return subject;
   });
 }

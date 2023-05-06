@@ -1,4 +1,4 @@
-import { Sujbect, SujbectTable } from './Subject.data';
+import { Subject, SubjectTable } from './Subject.data';
 
 enum Teacher_Jobs {
   docens = 'docens',
@@ -14,7 +14,7 @@ export interface Teacher {
   Name: string;
   Email: string;
   Job: Teacher_Jobs;
-  subjects: Sujbect[];
+  subjects: Subject[];
   subjectids: number[];
   deleted: boolean;
 }
@@ -32,7 +32,7 @@ export class TeacherTable {
       deleted: false,
     },
     {
-      id: 1,
+      id: 2,
       Neptun: '321ABC',
       Name: '2Name',
       Email: '2Name@email.com',
@@ -45,7 +45,7 @@ export class TeacherTable {
 
   public static teachers: Teacher[] = TeacherTable._teachers.map((teacher) => {
     teacher.subjectids.forEach((x) => {
-      const subject = SujbectTable.subjects.find(
+      const subject = SubjectTable._subject.find(
         (a) => a.id === teacher.subjectids[x]
       );
       if (subject != undefined) teacher.subjects.push(subject);
