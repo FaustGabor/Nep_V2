@@ -3,13 +3,15 @@ import { Observable, of } from 'rxjs';
 import { RequestService } from '../request.service';
 import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
+import { SemesterModel } from './store/semester.model';
+import { Store } from '@ngrx/store';
 import { Semester } from '../Data/Semester.data';
 
 const SEMESTER_URL = 'api/semester';
 
 @Injectable()
 export class SemesterService {
-  constructor(private requestService: RequestService) {}
+  constructor(private requestService: RequestService, private store: Store) {}
 
   getSemesters(): Observable<Semester[]> {
     const httpOptions = {
@@ -20,7 +22,11 @@ export class SemesterService {
     return this.requestService.get<Semester[]>(SEMESTER_URL, httpOptions);
   }
 
-  getSemester(bookId: number): Observable<any> {
-    return this.requestService.get(`${SEMESTER_URL}/${bookId}`);
+  getSemester(semesterId: number): Observable<any> {
+    return this.requestService.get(`${SEMESTER_URL}/${semesterId}`);
+  }
+
+  createSemester(Semester: SemesterModel): Observable<any> {
+    return this.requestService.post(`${SEMESTER_URL}/`, Semester);
   }
 }

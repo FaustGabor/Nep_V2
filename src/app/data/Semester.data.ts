@@ -26,7 +26,7 @@ export class SemesterTable {
       Name: '2021/22/1',
       Start_date: new Date(2021, 9, 1),
       End_date: new Date(2022, 7, 1),
-      subjectids: [],
+      subjectids: [2],
       subjects: [],
       deleted: false,
     },
@@ -35,10 +35,10 @@ export class SemesterTable {
   public static semesters: Semester[] = SemesterTable._semesters.map(
     (semester) => {
       semester.subjectids.forEach((x) => {
-        const subject = SubjectTable._subject.find(
-          (a) => a.id === semester.subjectids[x]
-        );
-        if (subject != undefined) semester.subjects.push(subject);
+        if (SubjectTable != undefined) {
+          const subject = SubjectTable._subject.find((a) => a.id === x);
+          if (subject != undefined) semester.subjects.push(subject);
+        }
       });
       return semester;
     }
