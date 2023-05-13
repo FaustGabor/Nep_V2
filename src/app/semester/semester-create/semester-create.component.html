@@ -1,0 +1,24 @@
+<h3>Create new semester</h3>
+<p>
+  <a mat-button routerLink="/semester">
+    <b>Back to semesters</b>
+  </a>
+</p>
+<form [formGroup]="semestersForm" (ngSubmit)="onSubmit(semestersForm.value)">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Semester's name</mat-label>
+      <input matInput placeholder="Name" formControlName="Name" />
+      <mat-hint>like 2022/2023</mat-hint>
+    </mat-form-field>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    type
+    [disabled]="semestersForm.invalid"
+  >
+    Create
+  </button>
+</form>
+<p>Form Status: {{ semestersForm.status }}</p>

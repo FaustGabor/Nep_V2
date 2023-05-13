@@ -6,7 +6,7 @@ import { SemesterSerive } from '../semester.service';
 import { SemesterActionTypes, semestersLoadedAction } from './semester.actions';
 import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/effects';
-import { selectNextSemesterId } from '../store/books.selectors';
+import { selectNextSemesterId } from '../store/semester.selectors';
 import { SemesterModel } from './semester.model';
 
 @Injectable()
