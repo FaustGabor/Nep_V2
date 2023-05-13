@@ -35,8 +35,8 @@ import { SemesterCreateComponent } from './semester-create/semester-create.compo
     MatProgressSpinnerModule,
     MatTableModule,
     StoreModule.forFeature(
-      fromSemesters.booksFeatureKey,
-      fromSemesters.booksReducer
+      fromSemesters.semesterFeatureKey,
+      fromSemesters.semestersReducer
     ),
     EffectsModule.forFeature([SemesterEffects]),
   ],
