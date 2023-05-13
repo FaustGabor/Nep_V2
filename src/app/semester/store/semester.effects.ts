@@ -2,8 +2,12 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
-import { SemesterSerive } from '../semester.service';
-import { SemesterActionTypes, semestersLoadedAction } from './semester.actions';
+import { SemesterService } from '../semester.service';
+import {
+  SemesterActionTypes,
+  semestersLoadedAction,
+  semesterCreatedAction,
+} from './semester.actions';
 import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/effects';
 import { selectNextSemesterId } from '../store/semester.selectors';
@@ -16,7 +20,7 @@ export class SemesterEffects {
       ofType(SemesterActionTypes.semestersRequested),
       mergeMap((action) => {
         return this.semestersService.getSemesters().pipe(
-          map((semester) => semestersLoadedAction({ semester })),
+          map((semester) => semestersLoadedAction({ semesters })),
           catchError(() => EMPTY)
         );
       })
@@ -34,12 +38,11 @@ export class SemesterEffects {
             return semesterCreatedAction({
               semester: {
                 id,
-                title: action.title,
-                publishYear: action.publishYear,
-                pages: action.pages,
-                isbn: action.isbn,
-                authorId: action.authorId,
-                authorName: '',
+                Name: action.Name,
+                Start_date: action.Start_date,
+                End_date: action.End_date,
+                subjectids: action.subjectids,
+                subjects: action.subjects,
                 deleted: false,
               },
             });

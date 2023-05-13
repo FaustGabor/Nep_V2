@@ -14,11 +14,11 @@ import { Observable } from 'rxjs';
 import { semesterCreateAction } from '../store/semester.actions';
 
 @Component({
-  selector: 'app-semesters-create',
+  selector: 'app-semester-create',
   templateUrl: './semester-create.component.html',
   styleUrls: ['./semester-create.component.css'],
 })
-export class SemestersCreateComponent implements OnInit {
+export class SemesterCreateComponent implements OnInit {
   semestersForm: FormGroup;
   //authors$: Observable<AuthorModel[]> = this.store.pipe(select(selectAuthors));
 
@@ -29,17 +29,19 @@ export class SemestersCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    /*
     this.store.dispatch(authorsRequestedAction());
     this.semestersForm = this.formBuilder.group({
       title: ['', [Validators.required, Validators.maxLength(50)]],
     });
     //this.authors$.subscribe(a => console.log('AUTHORS', a));
+    */
   }
 
   onSubmit(semesterData: any) {
     semesterData.deleted = false;
     this.store.dispatch(semesterCreateAction(semesterData));
-    this.booksForm.reset();
+    this.semestersForm.reset();
     this.router.navigate(['/semesters']);
   }
 }
