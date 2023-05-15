@@ -25,7 +25,6 @@ export class SemesterListComponent implements OnInit {
   semester$: Observable<SemesterModel[]> = this.store.pipe(
     select(selectSemesters)
   );
-  element: Semester;
 
   ngOnInit() {
     this.store.dispatch(semestersRequestedAction());

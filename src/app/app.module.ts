@@ -25,31 +25,40 @@ import { EventsFeatureState } from './events/store/events.reducer';
 import { AuthorsFeatureState } from './authors/store/authors.reducer';
 import { BooksFeatureState } from './books/store/books.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { SemesterFeatureState } from './semester/store/semester.reducer';
 
 export interface AppState {
   eventsFeature: EventsFeatureState;
-	authorsFeature: AuthorsFeatureState;
-	booksFeatur: BooksFeatureState;
+  authorsFeature: AuthorsFeatureState;
+  booksFeatur: BooksFeatureState;
+  semesterFeature: SemesterFeatureState;
 }
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule, ReactiveFormsModule, BrowserAnimationsModule, HttpClientModule,
-  environment.isMockEnabled ? HttpClientInMemoryWebApiModule.forRoot(InMemoryEventService) : [],
-  StoreModule.forRoot({}),
-  EffectsModule.forRoot(),
-	// Instrumentation must be imported after importing StoreModule (config is optional)
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    environment.isMockEnabled
+      ? HttpClientInMemoryWebApiModule.forRoot(InMemoryEventService)
+      : [],
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot(),
+    // Instrumentation must be imported after importing StoreModule (config is optional)
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-  AppRoutingModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatInputModule,
-    MatProgressSpinnerModule,/*,
+    MatProgressSpinnerModule /*,
 		MatMenuModule,
 		MatSelectModule,
 		MatTableModule,
@@ -67,9 +76,15 @@ export interface AppState {
 		MatTabsModule,
 		MatTooltipModule,
 		MatDialogModule,
-    MatDividerModule*/ ],
-  declarations: [ AppComponent, HelloComponent ],
-  bootstrap:    [ AppComponent ],
-  providers: [InMemoryEventService, RequestService, httpInterceptorProviders, AuthService]
+    MatDividerModule*/,
+  ],
+  declarations: [AppComponent, HelloComponent],
+  bootstrap: [AppComponent],
+  providers: [
+    InMemoryEventService,
+    RequestService,
+    httpInterceptorProviders,
+    AuthService,
+  ],
 })
-export class AppModule { }
+export class AppModule {}
