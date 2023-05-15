@@ -5,7 +5,7 @@ import { Teacher } from '../../data/Teacher.data';
 import { Store, select } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
 import { TeacherModel } from '../store/teacher.model';
-import { selectTeachers } from '../store/teacher.selectors';
+import { selectLoadedTeacher } from '../store/teacher.selectors';
 import { teachersubjectListAction } from '../store/teacher.actions';
 
 @Component({
