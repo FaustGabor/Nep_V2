@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { RequestService } from '../request.service';
 import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
-import { StudentModel } from './store/semester.model';
+import { StudentModel } from './store/student.model';
 import { Store } from '@ngrx/store';
 import { Student } from '../Data/Student.data';
 
