@@ -26,12 +26,14 @@ import { AuthorsFeatureState } from './authors/store/authors.reducer';
 import { BooksFeatureState } from './books/store/books.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SemesterFeatureState } from './semester/store/semester.reducer';
+import { studentFeatureState } from './student/store/student.reducer';
 
 export interface AppState {
   eventsFeature: EventsFeatureState;
   authorsFeature: AuthorsFeatureState;
   booksFeatur: BooksFeatureState;
   semesterFeature: SemesterFeatureState;
+  studentFeature: studentFeatureState;
 }
 
 @NgModule({
