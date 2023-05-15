@@ -16,6 +16,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { TeacherComponent } from './teacher/teacher.component';
 import { TeacherService } from './teacher.service';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
+import { TeacherListSubjectComponent } from './teacher-list-subject/teacher-list-subject.component';
 import * as fromTeachers from './store/teacher.reducer';
 import { TeacherEffects } from './store/teacher.effects';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
@@ -44,6 +45,7 @@ import { TeacherCreateComponent } from './teacher-create/teacher-create.componen
     TeacherComponent,
     TeacherListComponent,
     TeacherCreateComponent,
+    TeacherListSubjectComponent,
   ],
   providers: [TeacherService],
 })

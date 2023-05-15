@@ -9,14 +9,14 @@ import { selectTeachers } from '../store/teacher.selectors';
 import { teachersRequestedAction } from '../store/teacher.actions';
 
 @Component({
-  selector: 'app-teacher-list',
-  templateUrl: './teacher-list.component.html',
-  styleUrls: ['./teacher-list.component.css'],
+  selector: 'app-teacher-list-subject',
+  templateUrl: './teacher-list-subject.component.html',
+  styleUrls: ['./teacher-list-subject.component.css'],
 })
-export class TeacherListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'Name', 'Neptun', 'Email', 'Job'];
+export class TeacherListSubjectComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'Name', 'SemesterName', 'Subjects'];
 
-  teacher$: Observable<TeacherModel[]> = this.store.pipe(
+  teacher_subject$: Observable<TeacherModel[]> = this.store.pipe(
     select(selectTeachers)
   );
 
