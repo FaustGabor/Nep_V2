@@ -16,7 +16,7 @@ import { teachersubjectListAction } from '../store/teacher.actions';
 export class TeacherListSubjectComponent implements OnInit {
   displayedColumns: string[] = ['id', 'Name', 'SemesterName', 'Subjects'];
 
-  teacher$: Observable<TeacherModel[]> = this.store.pipe(
+  teacher$: Observable<TeacherModel> = this.store.pipe(
     select(selectLoadedTeacher)
   );
 
