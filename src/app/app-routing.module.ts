@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  /*
   {
     path: 'subject',
     loadChildren: () =>
       import('./subject/subject.module').then((m) => m.SubjectModule),
     canLoad: [AuthGuard],
   },
+  /*
   {
     path: 'teacher',
     loadChildren: () =>

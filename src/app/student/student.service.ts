@@ -5,9 +5,9 @@ import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
 import { StudentModel } from './store/student.model';
 import { Store } from '@ngrx/store';
-import { Student } from '../Data/Student.data';
+import { Student } from '../data/Student.data';
 
-const SEMESTER_URL = 'api/semester';
+const STUDENT_URL = 'api/student';
 
 @Injectable()
 export class StudentService {
@@ -19,14 +19,14 @@ export class StudentService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.requestService.get<Student[]>(SEMESTER_URL, httpOptions);
+    return this.requestService.get<Student[]>(STUDENT_URL, httpOptions);
   }
 
-  getStudent(semesterId: number): Observable<any> {
-    return this.requestService.get(`${SEMESTER_URL}/${semesterId}`);
+  getStudent(studentId: number): Observable<any> {
+    return this.requestService.get(`${STUDENT_URL}/${studentId}`);
   }
 
   createStudent(Student: StudentModel): Observable<any> {
-    return this.requestService.post(`${SEMESTER_URL}/`, Student);
+    return this.requestService.post(`${STUDENT_URL}/`, Student);
   }
 }

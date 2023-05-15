@@ -5,7 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
 import { SemesterModel } from './store/semester.model';
 import { Store } from '@ngrx/store';
-import { Semester } from '../Data/Semester.data';
+import { Semester } from '../data/Semester.data';
 
 const SEMESTER_URL = 'api/semester';
 

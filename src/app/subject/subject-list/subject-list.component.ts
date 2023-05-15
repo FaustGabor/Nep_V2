@@ -17,9 +17,9 @@ export class SubjectListComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'Name',
-    'Start_date',
-    'End_date',
-    'Subjects',
+    'Code',
+    'Credit',
+    'Department',
   ];
 
   subject$: Observable<SubjectModel[]> = this.store.pipe(

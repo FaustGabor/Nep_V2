@@ -3,11 +3,11 @@ import { Observable, of } from 'rxjs';
 import { RequestService } from '../request.service';
 import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
-import { SubjectModel } from './store/semester.model';
+import { SubjectModel } from './store/subject.model';
 import { Store } from '@ngrx/store';
-import { Subject } from '../Data/Subject.data';
+import { Subject } from '../data/Subject.data';
 
-const SEMESTER_URL = 'api/semester';
+const SUBJECT_URL = 'api/semester';
 
 @Injectable()
 export class SubjectService {
@@ -19,14 +19,14 @@ export class SubjectService {
         'Content-Type': 'application/json',
       }),
     };
-    return this.requestService.get<Subject[]>(SEMESTER_URL, httpOptions);
+    return this.requestService.get<Subject[]>(SUBJECT_URL, httpOptions);
   }
 
-  getSubject(semesterId: number): Observable<any> {
-    return this.requestService.get(`${SEMESTER_URL}/${semesterId}`);
+  getSubject(subjectId: number): Observable<any> {
+    return this.requestService.get(`${SUBJECT_URL}/${subjectId}`);
   }
 
   createSubject(Subject: SubjectModel): Observable<any> {
-    return this.requestService.post(`${SEMESTER_URL}/`, Subject);
+    return this.requestService.post(`${SUBJECT_URL}/`, Subject);
   }
 }

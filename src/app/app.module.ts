@@ -27,6 +27,7 @@ import { BooksFeatureState } from './books/store/books.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { SemesterFeatureState } from './semester/store/semester.reducer';
 import { StudentFeatureState } from './student/store/student.reducer';
+import { SubjectFeatureState } from './subject/store/subject.reducer';
 
 export interface AppState {
   eventsFeature: EventsFeatureState;
@@ -34,6 +35,7 @@ export interface AppState {
   booksFeatur: BooksFeatureState;
   semesterFeature: SemesterFeatureState;
   studentFeature: StudentFeatureState;
+  subjectsFearure: SubjectFeatureState;
 }
 
 @NgModule({
