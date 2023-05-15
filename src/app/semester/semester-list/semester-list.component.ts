@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SemesterService } from '../semester.service';
 import { Observable } from 'rxjs';
-import { Semester } from '../../Data/Semester.data';
+import { Semester } from '../../data/Semester.data';
+import { Store, select } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
+import { SemesterModel } from '../store/semester.model';
+import { selectSemesters } from '../store/semester.selectors';
+import { semestersRequestedAction } from '../store/semester.actions';
 
 @Component({
   selector: 'app-semester-list',
@@ -18,15 +22,14 @@ export class SemesterListComponent implements OnInit {
     'Subjects',
   ];
 
-  semester$: Observable<any>;
+  semester$: Observable<SemesterModel[]> = this.store.pipe(
+    select(selectSemesters)
+  );
   element: Semester;
 
   ngOnInit() {
-    this.semester$ = this.SemesterService.getSemesters();
-    this.semester$.subscribe((result) => {
-      this.element = result;
-    });
+    this.store.dispatch(semestersRequestedAction());
   }
 
-  constructor(private SemesterService: SemesterService) {}
+  constructor(private SemesterService: SemesterService, private store: Store) {}
 }

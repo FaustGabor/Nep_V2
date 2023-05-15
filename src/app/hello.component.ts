@@ -7,7 +7,16 @@ import { Component, Input } from '@angular/core';
     <nav>
       <ul>
         <li><a mat-button routerLink="/semester">
-            <b>Events</b>
+            <b>Semesters</b>
+          </a></li>
+          <li><a mat-button routerLink="/subject">
+            <b>Subjects</b>
+          </a></li>
+          <li><a mat-button routerLink="/teacher">
+            <b>Teachers</b>
+          </a></li>
+          <li><a mat-button routerLink="/student">
+            <b>Students</b>
           </a></li>
            <li><a mat-button routerLink="/books">
             <b>Books</b>

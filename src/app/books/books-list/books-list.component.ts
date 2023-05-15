@@ -10,19 +10,16 @@ import { BookModel } from '../store/books.model';
 @Component({
   selector: 'app-books-list',
   templateUrl: './books-list.component.html',
-  styleUrls: ['./books-list.component.css']
+  styleUrls: ['./books-list.component.css'],
 })
 export class BooksListComponent implements OnInit {
-
   displayedColumns: string[] = ['id', 'title', 'authorName', 'publishYear'];
 
-  books$: Observable<BookModel[]> = this.store.pipe(select(selectBooks))
+  books$: Observable<BookModel[]> = this.store.pipe(select(selectBooks));
 
-  constructor(private booksService: BooksService,
-  private store: Store) { }
+  constructor(private booksService: BooksService, private store: Store) {}
 
   ngOnInit() {
     this.store.dispatch(booksRequestedAction());
   }
-
 }

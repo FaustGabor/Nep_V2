@@ -1,3 +1,4 @@
+import { Subject } from '../../data/Subject.data';
 import { Semester } from '../../data/semester.data';
 
 export class SemesterModel implements Semester {
@@ -6,6 +7,6 @@ export class SemesterModel implements Semester {
   Start_date: Date;
   End_date: Date;
   subjectids: number[];
-  subjects: string[];
+  subjects: Subject[];
   deleted: boolean;
 }
