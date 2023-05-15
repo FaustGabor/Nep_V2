@@ -17,11 +17,11 @@ export class TeacherListSubjectComponent implements OnInit {
   displayedColumns: string[] = ['id', 'Name', 'SemesterName', 'Subjects'];
 
   teacher$: Observable<TeacherModel[]> = this.store.pipe(
-    select(selectTeachers)
+    select(selectLoadedTeacher)
   );
 
   ngOnInit() {
-    this.store.dispatch(teachersubjectListAction({teacherId: 0}));
+    this.store.dispatch(teachersubjectListAction({ teacherId: 1 }));
   }
 
   constructor(private TeacherService: TeacherService, private store: Store) {}
