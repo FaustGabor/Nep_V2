@@ -7,6 +7,7 @@ import {
   TeacherActionTypes,
   teachersLoadedAction,
   teacherCreatedAction,
+  teachersubjectListedAction,
 } from './teacher.actions';
 import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/effects';
@@ -24,6 +25,18 @@ export class TeacherEffects {
           catchError(() => EMPTY)
         );
       })
+    )
+  );
+
+  listTeachers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TeacherActionTypes.teachersubjectlist),
+      switchMap((action) =>
+        this.teachersService.getTeacher(action.teacherId).pipe(
+          map((teacher) => teachersubjectListedAction({ teacher })),
+          catchError(() => EMPTY)
+        )
+      )
     )
   );
 

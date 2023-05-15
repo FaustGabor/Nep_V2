@@ -6,7 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
 import { TeacherModel } from '../store/teacher.model';
 import { selectTeachers } from '../store/teacher.selectors';
-import { teachersRequestedAction } from '../store/teacher.actions';
+import { teachersubjectListAction } from '../store/teacher.actions';
 
 @Component({
   selector: 'app-teacher-list-subject',
@@ -16,14 +16,12 @@ import { teachersRequestedAction } from '../store/teacher.actions';
 export class TeacherListSubjectComponent implements OnInit {
   displayedColumns: string[] = ['id', 'Name', 'SemesterName', 'Subjects'];
 
-  teacher_subject$: Observable<any>;
-  
+  teacher$: Observable<TeacherModel[]> = this.store.pipe(
+    select(selectTeachers)
+  );
 
   ngOnInit() {
-    this.events$ = this.eventService.getEvents();
-    this.events$.subscribe((result) => {
-      this.events = result;
-    });
+    this.store.dispatch(teachersubjectListAction({teacherId: 0}));
   }
 
   constructor(private TeacherService: TeacherService, private store: Store) {}
