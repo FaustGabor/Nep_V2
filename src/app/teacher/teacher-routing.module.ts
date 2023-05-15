@@ -4,6 +4,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { TeacherComponent } from './teacher/teacher.component';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
+import { TeacherListSubjectComponent } from './teacher-list-subject/teacher-list-subject.component';
 
 const routes: Routes = [
   {
@@ -20,11 +21,11 @@ const routes: Routes = [
             component: TeacherListComponent,
           },
           /*
-        {
-          path: 'details/:eventId',
-          component: EventDetailsComponent
-        },
-                */
+          {
+            path: '',
+            component: TeacherListSubjectComponent,
+          },
+          */
           {
             path: 'create',
             component: TeacherCreateComponent,
