@@ -1,3 +1,9 @@
+<p>
+  <a mat-button routerLink="/teacher">
+    <b>Back to Teachers</b>
+  </a>
+</p>
+
 <div>Taught subjects in each semesters</div>
 <table mat-table [dataSource]="teacher_subject$" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
@@ -23,4 +29,3 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
-

@@ -1,6 +1,12 @@
 <div style="margin-bottom: 10px">
   <a mat-mini-fab routerLink="/Teacher/create" color="primary">
-    <div>add</div>
+    <div>Add</div>
+  </a>
+</div>
+
+<div style="margin-bottom: 10px">
+  <a mat-mini-fab routerLink="/Teacher/list_subject" color="primary">
+    <div>List</div>
   </a>
 </div>
 
@@ -33,3 +39,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+<router-outlet></router-outlet>

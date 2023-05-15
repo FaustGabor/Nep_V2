@@ -20,12 +20,10 @@ const routes: Routes = [
             path: '',
             component: TeacherListComponent,
           },
-          /*
           {
-            path: '',
+            path: 'list_subject',
             component: TeacherListSubjectComponent,
           },
-          */
           {
             path: 'create',
             component: TeacherCreateComponent,
