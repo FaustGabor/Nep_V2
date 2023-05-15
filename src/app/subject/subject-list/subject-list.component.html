@@ -1,10 +1,10 @@
 <div style="margin-bottom: 10px">
-  <a mat-mini-fab routerLink="/Student/create" color="primary">
+  <a mat-mini-fab routerLink="/Subject/create" color="primary">
     <div>add</div>
   </a>
 </div>
 
-<table mat-table [dataSource]="student$" class="mat-elevation-z8">
+<table mat-table [dataSource]="subject$" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -15,19 +15,19 @@
     <td mat-cell *matCellDef="let element">{{ element.Name }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Neptun">
+  <ng-container matColumnDef="Start_date">
     <th mat-header-cell *matHeaderCellDef>Start</th>
-    <td mat-cell *matCellDef="let element">{{ element.Neptun }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.Start_date }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Email">
+  <ng-container matColumnDef="End_date">
     <th mat-header-cell *matHeaderCellDef>End</th>
-    <td mat-cell *matCellDef="let element">{{ element.Email }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.End_date }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Field_of_study">
+  <ng-container matColumnDef="Subjects">
     <th mat-header-cell *matHeaderCellDef>Subjects</th>
-    <td mat-cell *matCellDef="let element">{{ element.Field_of_study }}</td>
+    <td mat-cell *matCellDef="let element">{{ element.subjectsid }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

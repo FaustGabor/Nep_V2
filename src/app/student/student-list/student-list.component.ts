@@ -17,9 +17,9 @@ export class StudentListComponent implements OnInit {
   displayedColumns: string[] = [
     'id',
     'Name',
-    'Start_date',
-    'End_date',
-    'Subjects',
+    'Neptun',
+    'Email',
+    'Field_of_study',
   ];
 
   student$: Observable<StudentModel[]> = this.store.pipe(
