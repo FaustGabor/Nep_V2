@@ -3,9 +3,9 @@ import { Observable, of } from 'rxjs';
 import { RequestService } from '../request.service';
 import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
-import { studentModel } from './store/student.model';
+import { StudentModel } from './store/student.model';
 import { Store } from '@ngrx/store';
-import { Student } from '../Data/student.data';
+import { Student } from '../Data/Student.data';
 
 const student_URL = 'api/student';
 
@@ -26,7 +26,7 @@ export class StudentService {
     return this.requestService.get(`${student_URL}/${studentId}`);
   }
 
-  createstudent(student: studentModel): Observable<any> {
+  createstudent(student: StudentModel): Observable<any> {
     return this.requestService.post(`${student_URL}/`, student);
   }
 }

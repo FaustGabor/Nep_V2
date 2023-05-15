@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { Student } from '../../data/Student.data';
 import { Store, select } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
-import { studentModel } from '../store/student.model';
+import { StudentModel } from '../store/student.model';
 import { selectstudents } from '../store/student.selectors';
 import { studentsRequestedAction } from '../store/student.actions';
 
@@ -22,7 +22,7 @@ export class studentListComponent implements OnInit {
     'Subjects',
   ];
 
-  student$: Observable<studentModel[]> = this.store.pipe(
+  student$: Observable<StudentModel[]> = this.store.pipe(
     select(selectstudents)
   );
 

@@ -14,7 +14,7 @@ import { studentRoutingModule } from './student-routing.module';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { studentComponent } from './student/student.component';
-import { studentService } from './student.service';
+import { StudentService } from './student.service';
 import { studentListComponent } from './student-list/student-list.component';
 import * as fromstudents from './store/student.reducer';
 import { studentEffects } from './store/student.effects';

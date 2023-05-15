@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { studentModel } from './student.model';
+import { StudentModel } from './student.model';
 
 export enum studentActionTypes {
   studentsRequested = '[student] student Requested',
@@ -13,13 +13,13 @@ export const studentsRequestedAction = createAction(
 );
 export const studentsLoadedAction = createAction(
   studentActionTypes.studentssLoaded,
-  props<{ students: studentModel[] }>()
+  props<{ students: StudentModel[] }>()
 );
 export const studentCreateAction = createAction(
   studentActionTypes.studentCreate,
-  props<{ student: studentModel }>()
+  props<{ student: StudentModel }>()
 );
 export const studentCreatedAction = createAction(
   studentActionTypes.studentCreated,
-  props<{ student: studentModel }>()
+  props<{ student: StudentModel }>()
 );
