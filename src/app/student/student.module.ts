@@ -45,6 +45,6 @@ import { StudentCreateComponent } from './student-create/student-create.componen
     studentListComponent,
     StudentCreateComponent,
   ],
-  providers: [studentService],
+  providers: [StudentService],
 })
-export class studentModule {}
+export class StudentModule {}
