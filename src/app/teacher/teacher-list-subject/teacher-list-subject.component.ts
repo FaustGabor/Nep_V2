@@ -7,6 +7,8 @@ import { MatTableModule } from '@angular/material/table';
 import { TeacherModel } from '../store/teacher.model';
 import { selectLoadedTeacher } from '../store/teacher.selectors';
 import { teachersubjectListAction } from '../store/teacher.actions';
+import { map } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-teacher-list-subject',
@@ -21,8 +23,22 @@ export class TeacherListSubjectComponent implements OnInit {
   );
 
   ngOnInit() {
-    this.store.dispatch(teachersubjectListAction({ teacherId: 1 }));
+    //this.store.dispatch(teachersubjectListAction({ teacherId: 1 }));
+    this.route.paramMap
+      .pipe(
+        map((params) => {
+          return this.store.dispatch(
+            teachersubjectListAction({ teacherId: +params.get('teacherId') })
+          );
+        })
+      )
+      .subscribe();
   }
 
-  constructor(private TeacherService: TeacherService, private store: Store) {}
+  constructor(
+    private TeacherService: TeacherService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private store: Store
+  ) {}
 }
