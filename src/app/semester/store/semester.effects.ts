@@ -20,7 +20,7 @@ export class SemesterEffects {
       ofType(SemesterActionTypes.semestersRequested),
       mergeMap((action) => {
         return this.semestersService.getSemesters().pipe(
-          map((semester) => semestersLoadedAction({ semesters })),
+          map((semesters) => semestersLoadedAction({ semesters })),
           catchError(() => EMPTY)
         );
       })
