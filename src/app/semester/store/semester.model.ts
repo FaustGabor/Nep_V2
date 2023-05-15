@@ -6,7 +6,5 @@ export class SemesterModel implements Semester {
   Name: string;
   Start_date: Date;
   End_date: Date;
-  subjectids: number[];
-  subjects: Subject[];
   deleted: boolean;
 }

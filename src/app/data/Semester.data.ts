@@ -5,8 +5,6 @@ export interface Semester {
   Name: string;
   Start_date: Date;
   End_date: Date;
-  subjectids: number[];
-  subjects: Subject[];
   deleted: boolean;
 }
 
@@ -17,8 +15,6 @@ export class SemesterTable {
       Name: '2022/23/1',
       Start_date: new Date(2022, 9, 1),
       End_date: new Date(2023, 7, 1),
-      subjectids: [1, 2],
-      subjects: [],
       deleted: false,
     },
     {
@@ -26,21 +22,9 @@ export class SemesterTable {
       Name: '2021/22/1',
       Start_date: new Date(2021, 9, 1),
       End_date: new Date(2022, 7, 1),
-      subjectids: [2],
-      subjects: [],
       deleted: false,
     },
   ];
 
-  public static semesters: Semester[] = SemesterTable._semesters.map(
-    (semester) => {
-      semester.subjectids.forEach((x) => {
-        if (SubjectTable != undefined) {
-          const subject = SubjectTable._subject.find((a) => a.id === x);
-          if (subject != undefined) semester.subjects.push(subject);
-        }
-      });
-      return semester;
-    }
-  );
+  
 }

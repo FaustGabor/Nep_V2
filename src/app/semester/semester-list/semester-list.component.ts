@@ -14,13 +14,7 @@ import { semestersRequestedAction } from '../store/semester.actions';
   styleUrls: ['./semester-list.component.css'],
 })
 export class SemesterListComponent implements OnInit {
-  displayedColumns: string[] = [
-    'id',
-    'Name',
-    'Start_date',
-    'End_date',
-    'Subjects',
-  ];
+  displayedColumns: string[] = ['id', 'Name', 'Start_date', 'End_date'];
 
   semester$: Observable<SemesterModel[]> = this.store.pipe(
     select(selectSemesters)

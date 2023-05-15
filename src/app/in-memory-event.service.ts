@@ -15,12 +15,12 @@ export class InMemoryEventService implements InMemoryDbService {
 
   createDb() {
     const db = {
-      semester: SemesterTable.semesters,
+      semester: SemesterTable._semesters,
       books: BookTable.books,
       authors: AuthorTable.authors,
       student: StudentTable.students,
       teacher: TeacherTable.teachers,
-      subject: SubjectTable._subject,
+      subject: SubjectTable.subjects,
     };
     return db;
   }

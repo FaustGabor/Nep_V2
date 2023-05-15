@@ -16,12 +16,14 @@ import { teachersRequestedAction } from '../store/teacher.actions';
 export class TeacherListSubjectComponent implements OnInit {
   displayedColumns: string[] = ['id', 'Name', 'SemesterName', 'Subjects'];
 
-  teacher_subject$: Observable<TeacherModel[]> = this.store.pipe(
-    select(selectTeachers)
-  );
+  teacher_subject$: Observable<any>;
+  
 
   ngOnInit() {
-    this.store.dispatch(teachersRequestedAction());
+    this.events$ = this.eventService.getEvents();
+    this.events$.subscribe((result) => {
+      this.events = result;
+    });
   }
 
   constructor(private TeacherService: TeacherService, private store: Store) {}
