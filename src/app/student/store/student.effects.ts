@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { map, mergeMap, catchError, switchMap } from 'rxjs/operators';
-import { studentService } from '../student.service';
+import { StudentService } from '../student.service';
 import {
   studentActionTypes,
   studentsLoadedAction,
@@ -11,7 +11,7 @@ import {
 import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/effects';
 import { selectNextstudentId } from '../store/student.selectors';
-import { studentModel } from './student.model';
+import { StudentModel } from './student.model';
 
 @Injectable()
 export class studentEffects {

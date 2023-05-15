@@ -1,6 +1,6 @@
 import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { AppState } from '../../app.module';
-import { studentModel } from './student.model';
+import { StudentModel } from './student.model';
 import { studentFeatureState } from './student.reducer';
 import { studentFeatureKey } from './student.reducer';
 
@@ -17,7 +17,7 @@ export const selectstudents = createSelector(
 );
 export const selectNextstudentId = createSelector(
   selectstudents,
-  (student: studentModel[]) => {
+  (student: StudentModel[]) => {
     return student.length + 1;
   }
 );

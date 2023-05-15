@@ -1,7 +1,7 @@
 import { Subject } from '../../data/Subject.data';
-import { Student } from '../../data/student.data';
+import { Student, Student_Fields } from '../../data/Student.data';
 
-export class studentModel implements student {
+export class StudentModel implements Student {
   id: number;
   Neptun: string;
   Name: string;
