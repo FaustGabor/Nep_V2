@@ -16,13 +16,14 @@ const routes: Routes = [
       import('./teacher/teacher.module').then((m) => m.TeacherModule),
     canLoad: [AuthGuard],
   },
-  */
+  
   {
-    path: 'student',
+    path: 'student', 
     loadChildren: () =>
       import('./student/student.module').then((m) => m.StudentModule),
     canLoad: [AuthGuard],
   },
+  */
   {
     path: 'semester',
     loadChildren: () =>
