@@ -18,7 +18,7 @@ import { studentService } from './student.service';
 import { studentListComponent } from './student-list/student-list.component';
 import * as fromstudents from './store/student.reducer';
 import { studentEffects } from './store/student.effects';
-import { studentCreateComponent } from './student-create/student-create.component';
+import { StudentCreateComponent } from './student-create/student-create.component';
 
 @NgModule({
   imports: [
@@ -43,7 +43,7 @@ import { studentCreateComponent } from './student-create/student-create.componen
   declarations: [
     studentComponent,
     studentListComponent,
-    studentCreateComponent,
+    StudentCreateComponent,
   ],
   providers: [studentService],
 })

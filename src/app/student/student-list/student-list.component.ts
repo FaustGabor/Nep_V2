@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../student.service';
 import { Observable } from 'rxjs';
-import { Student } from '../../data/student.data';
+import { Student } from '../../data/Student.data';
 import { Store, select } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
 import { studentModel } from '../store/student.model';
@@ -30,5 +30,5 @@ export class studentListComponent implements OnInit {
     this.store.dispatch(studentsRequestedAction());
   }
 
-  constructor(private studentService: studentService, private store: Store) {}
+  constructor(private studentService: StudentService, private store: Store) {}
 }

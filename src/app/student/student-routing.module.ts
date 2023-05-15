@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../auth/auth.guard';
 import { studentListComponent } from './student-list/student-list.component';
 import { studentComponent } from './student/student.component';
-import { studentCreateComponent } from './student-create/student-create.component';
+import { StudentCreateComponent } from './student-create/student-create.component';
 
 const routes: Routes = [
   {
@@ -27,7 +27,7 @@ const routes: Routes = [
                 */
           {
             path: 'create',
-            component: studentCreateComponent,
+            component: StudentCreateComponent,
           },
         ],
       },

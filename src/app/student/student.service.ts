@@ -5,21 +5,21 @@ import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
 import { studentModel } from './store/student.model';
 import { Store } from '@ngrx/store';
-import { student } from '../Data/student.data';
+import { Student } from '../Data/student.data';
 
 const student_URL = 'api/student';
 
 @Injectable()
-export class studentService {
+export class StudentService {
   constructor(private requestService: RequestService, private store: Store) {}
 
-  getstudents(): Observable<student[]> {
+  getstudents(): Observable<Student[]> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
       }),
     };
-    return this.requestService.get<student[]>(student_URL, httpOptions);
+    return this.requestService.get<Student[]>(student_URL, httpOptions);
   }
 
   getstudent(studentId: number): Observable<any> {
