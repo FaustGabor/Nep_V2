@@ -58,6 +58,8 @@ export class TeacherCreateComponent implements OnInit {
     */
     teacherData.deleted = false;
     teacherData.subjectids = this.ids.toString().split(',');
+    teacherData.subjects = [];
+
     teacherData.subjectids.forEach((x) => {
       if (SubjectTable != undefined) {
         const subject = SubjectTable._subject.find((a) => a.id === x);

@@ -56,8 +56,8 @@ export class TeacherEffects {
                 Neptun: action.neptun,
                 Email: action.email,
                 Job: action.job,
-                subjectids: action.ids,
-                subjects: [],
+                subjectids: action.subjectids,
+                subjects: action.subjects,
                 deleted: false,
               },
             });
