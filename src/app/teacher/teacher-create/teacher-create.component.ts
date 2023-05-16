@@ -31,7 +31,7 @@ export class TeacherCreateComponent implements OnInit {
   TeacherForm: FormGroup;
   teacher: Teacher;
   enums: string[] = Object.values(Teacher_Jobs).filter((v) => isNaN(Number(v)));
-  subject: SubjectModel[] = this.store.pipe(select(selectSubjects));
+  //subject: SubjectModel[] = this.store.pipe(select(selectSubjects));
 
   constructor(
     private formBuilder: FormBuilder,
@@ -62,8 +62,8 @@ export class TeacherCreateComponent implements OnInit {
     teacherData.subjectids = teacherData.subjectids.split(',');
 
     teacherData.subjectids.forEach((x) => {
-      if (SubjectTable != undefined || this.subject != undefined) {
-        const subject = this.subject.find((a) => a.id === x);
+      if (SubjectTable != undefined) {
+        const subject = SubjectTable.subjects.find((a) => a.id === x);
 
         console.log('subjectTable', subject);
         console.log('subject', SubjectTable);
