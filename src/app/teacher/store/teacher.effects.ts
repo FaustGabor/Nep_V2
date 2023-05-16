@@ -45,17 +45,19 @@ export class TeacherEffects {
       ofType(TeacherActionTypes.teacherCreate),
       concatLatestFrom((action) => this.store.select(selectNextTeacherId)),
       switchMap(([action, id]) => {
+        console.log('valami2');
         console.log(action, id);
         return this.teachersService.createTeacher(action).pipe(
           map((item: any) => {
             return teacherCreatedAction({
               teacher: {
                 id,
-                Name: action.Name,
-                Start_date: action.Start_date,
-                End_date: action.End_date,
-                teacherids: action.teacherids,
-                teachers: action.teachers,
+                Name: action.name,
+                Neptun: action.neptun,
+                Email: action.email,
+                Job: action.job,
+                subjectids: action.ids,
+                subjects: [],
                 deleted: false,
               },
             });

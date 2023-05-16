@@ -1,6 +1,6 @@
 import { Subject, SubjectTable } from './Subject.data';
 
-enum Teacher_Jobs {
+export enum Teacher_Jobs {
   docens = 'docens',
   adjunktus = 'adjunktus',
   ügyvivő_szakértő = 'ügyvivő_szakértő',

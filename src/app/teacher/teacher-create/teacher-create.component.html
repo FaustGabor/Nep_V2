@@ -4,63 +4,63 @@
     <b>Back to teachers</b>
   </a>
 </p>
-<form [formGroup]="authorsForm" (ngSubmit)="onSubmit(authorsForm.value)">
+<form [formGroup]="TeacherForm" (ngSubmit)="onSubmit(TeacherForm.value)">
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Teacher's name</mat-label>
       <input matInput placeholder="Name" formControlName="name" />
-      <mat-hint>Give the teacher a name</mat-hint>
-      <mat-error *ngIf="name.invalid">{{ getNameErrorMessage() }}</mat-error>
+      <!--<mat-hint>Give the teacher a name</mat-hint>
+      <mat-error *ngIf="name.invalid">{{ getNameErrorMessage() }}</mat-error>-->
     </mat-form-field>
   </div>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Teacher's Neptun code</mat-label>
-      <input
-        type="number"
-        matInput
-        placeholder="Birth year"
-        formControlName="birthYear"
-      />
-      <mat-hint>Give the teacher a neptun code</mat-hint>
+      <input matInput placeholder="Neptun" formControlName="neptun" />
+      <!--<mat-hint>Give the teacher a neptun code</mat-hint>
       <mat-error *ngIf="neptun.invalid">{{
-        getDescriptionErrorMessage()
-      }}</mat-error>
+        getNeptunErrorMessage()
+      }}</mat-error>-->
     </mat-form-field>
   </div>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Teachers's Email</mat-label>
-      <input matInput placeholder="Start" formControlName="nationality" />
-      <mat-hint>Give the teacher an eamil adress</mat-hint>
-      <mat-error *ngIf="email.invalid">{{ getStartErrorMessage() }}</mat-error>
+      <input matInput placeholder="Email" formControlName="email" />
+      <!--<mat-hint>Give the teacher an eamil adress</mat-hint>
+      <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>-->
     </mat-form-field>
   </div>
   <div>
-    <mat-form-field appearance="outline">
+    <!--<mat-form-field appearance="outline">
       <mat-label>Teachers's Job</mat-label>
-      <input matInput placeholder="Start" formControlName="nationality" />
+      <input matInput placeholder="Job" formControlName="job" />
       <mat-hint>Give the teacher a job</mat-hint>
-      <mat-error *ngIf="email.invalid">{{ getStartErrorMessage() }}</mat-error>
-    </mat-form-field>
+      <mat-error *ngIf="job.invalid">{{ getJobErrorMessage() }}</mat-error>
+    </mat-form-field>-->
+    <select formControlName="job">
+      <option value="docens">docens</option>
+      <option value="adjunktus">adjunktus</option>
+      <option value="ügyvivő_szakértő">ügyvivő_szakértő</option>
+      <option value="tanársegéd">tanársegéd</option>
+      <option value="egyéb">egyéb</option>
+    </select>
   </div>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Teachers's subject IDs</mat-label>
-      <input matInput placeholder="Start" formControlName="nationality" />
-      <mat-hint>Give the teacher some subjects(with id)</mat-hint>
-      <mat-error *ngIf="id_list.invalid">{{
-        getStartErrorMessage()
-      }}</mat-error>
+      <input matInput placeholder="IDs" formControlName="ids" />
+      <!--<mat-hint>Give the teacher some subjects(with id)</mat-hint>
+      <mat-error *ngIf="id_list.invalid">{{ getIdsErrorMessage() }}</mat-error>-->
     </mat-form-field>
   </div>
   <button
     mat-raised-button
     color="primary"
     type
-    [disabled]="authorsForm.invalid"
+    [disabled]="TeacherForm.invalid"
   >
     Create
   </button>
 </form>
-<p>Form Status: {{ authorsForm.status }}</p>
+<p>Form Status: {{ TeacherForm.status }}</p>

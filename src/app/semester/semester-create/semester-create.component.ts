@@ -7,11 +7,15 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
-//import { authorsRequestedAction } from '../../authors/store/authors.actions';
-//import { AuthorModel } from '../../authors/store/authors.model';
-//import { selectAuthors } from '../../authors/store/authors.selectors';
-import { semesterCreateAction } from '../store/semester.actions';
+import { selectNextSemesterId } from '../store/semester.selectors';
+import {
+  SemesterActionTypes,
+  semestersLoadedAction,
+  semesterCreateAction,
+} from '../store/semester.actions';
+import { Semester } from '../../data/Semester.data';
+import { SemesterService } from '../semester.service';
+import { SemesterModel } from '../store/semester.model';
 
 @Component({
   selector: 'app-semester-create',
@@ -19,29 +23,37 @@ import { semesterCreateAction } from '../store/semester.actions';
   styleUrls: ['./semester-create.component.css'],
 })
 export class SemesterCreateComponent implements OnInit {
-  semestersForm: FormGroup;
-  //authors$: Observable<AuthorModel[]> = this.store.pipe(select(selectAuthors));
+  SemesterForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
-    private store: Store
+    private store: Store,
+    private service: SemesterService
   ) {}
 
   ngOnInit() {
-    /*
-    this.store.dispatch(authorsRequestedAction());
-    this.semestersForm = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.maxLength(50)]],
+    this.SemesterForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      start_date: [2000, [Validators.required]],
+      end_date: [2000, [Validators.required]],
     });
-    //this.authors$.subscribe(a => console.log('AUTHORS', a));
-    */
   }
 
   onSubmit(semesterData: any) {
     semesterData.deleted = false;
     this.store.dispatch(semesterCreateAction(semesterData));
-    this.semestersForm.reset();
-    this.router.navigate(['/semesters']);
+    this.SemesterForm.reset();
+    this.router.navigate(['/semester']);
+  }
+
+  get name() {
+    return this.SemesterForm.get('name');
+  }
+  get start_date() {
+    return this.SemesterForm.get('start_date');
+  }
+  get end_date() {
+    return this.SemesterForm.get('end_date');
   }
 }

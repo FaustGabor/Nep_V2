@@ -4,21 +4,50 @@
     <b>Back to semesters</b>
   </a>
 </p>
-<form [formGroup]="semestersForm" (ngSubmit)="onSubmit(semestersForm.value)">
+<form [formGroup]="SemesterForm" (ngSubmit)="onSubmit(SemesterForm.value)">
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Semester's name</mat-label>
-      <input matInput placeholder="Name" formControlName="Name" />
-      <mat-hint>like 2022/2023</mat-hint>
+      <input matInput placeholder="Name" formControlName="name" />
+      <!--<mat-hint>Give the semester a name</mat-hint>
+      <mat-error *ngIf="name.invalid">{{ getNameErrorMessage() }}</mat-error>-->
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Semester's start_date</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="start_date"
+        formControlName="start_date"
+      />
+      <!--<mat-hint>Give the semester a neptun code</mat-hint>
+      <mat-error *ngIf="neptun.invalid">{{
+        getNeptunErrorMessage()
+      }}</mat-error>-->
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Semesters's end_date</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="end_date"
+        formControlName="end_date"
+      />
+      <!--<mat-hint>Give the semester an eamil adress</mat-hint>
+      <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>-->
     </mat-form-field>
   </div>
   <button
     mat-raised-button
     color="primary"
     type
-    [disabled]="semestersForm.invalid"
+    [disabled]="SemesterForm.invalid"
   >
     Create
   </button>
 </form>
-<p>Form Status: {{ semestersForm.status }}</p>
+<p>Form Status: {{ SemesterForm.status }}</p>

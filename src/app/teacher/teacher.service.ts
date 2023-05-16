@@ -27,6 +27,7 @@ export class TeacherService {
   }
 
   createTeacher(Teacher: TeacherModel): Observable<any> {
+    console.log('valami', Teacher);
     return this.requestService.post(`${TEACHER_URL}/`, Teacher);
   }
 }

@@ -1,62 +1,121 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  FormControl,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { selectNextTeacherId } from '../store/teacher.selectors';
-import { TeacherActionTypes, teachersLoadedAction, teacherCreateAction } from '../store/teacher.actions';
+import {
+  TeacherActionTypes,
+  teachersLoadedAction,
+  teacherCreateAction,
+} from '../store/teacher.actions';
+import { Teacher, Teacher_Jobs } from '../../data/Teacher.data';
+import { TeacherService } from '../teacher.service';
+import { TeacherModel } from '../store/teacher.model';
 
 @Component({
   selector: 'app-teacher-create',
   templateUrl: './teacher-create.component.html',
-  styleUrls: ['./teacher-create.component.css']
+  styleUrls: ['./teacher-create.component.css'],
 })
 export class TeacherCreateComponent implements OnInit {
-
   TeacherForm: FormGroup;
+  teacher: Teacher;
+  enums: string[] = Object.values(Teacher_Jobs).filter((v) => isNaN(Number(v)));
 
-  constructor(private formBuilder: FormBuilder,
-              private router: Router,
-              private store: Store) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private store: Store,
+    private service: TeacherService
+  ) {}
 
   ngOnInit() {
     this.TeacherForm = this.formBuilder.group({
-      'name': ['', [Validators.required, Validators.maxLength(50)]],
-      'birthYear': [1980, [Validators.required]],
-      'nationality': ['', [Validators.required, Validators.maxLength(100)]]
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      neptun: [
+        '',
+        [Validators.required, Validators.maxLength(6), Validators.minLength(6)],
+      ],
+      email: ['', [Validators.required, Validators.maxLength(100)]],
+      job: ['', [Validators.required]],
+      ids: ['', [Validators.required]],
     });
   }
 
-  onSubmit(authorData: any) {
-    authorData.deleted = false;
-    this.store.dispatch(authorCreateAction(authorData));
+  onSubmit(teacherData: any) {
+    /*
+
+    this.teacher = new TeacherModel();
+    this.teacher.Name = teacherData.name;
+    this.service.createTeacher(this.teacher);
+    
+    */
+    teacherData.deleted = false;
+    teacherData.ids = [];
+    this.store.dispatch(teacherCreateAction(teacherData));
+
     this.TeacherForm.reset();
-    this.router.navigate(['/authors']);
+    this.router.navigate(['/teacher']);
   }
 
-  get name() { return this.TeacherForm.get('name'); }
-  get birthYear() { return this.TeacherForm.get('birthYear'); }
-  get nationality() { return this.TeacherForm.get('nationality'); }
+  get name() {
+    return this.TeacherForm.get('name');
+  }
+  get neptun() {
+    return this.TeacherForm.get('neptun');
+  }
+  get email() {
+    return this.TeacherForm.get('email');
+  }
+  get job() {
+    return this.TeacherForm.get('job');
+  }
+  get ids() {
+    return [this.TeacherForm.get('ids')];
+  }
 
   getNameErrorMessage() {
     if (this.name.dirty || this.name.touched) {
       if (this.name.hasError('required')) return 'You must enter a value!';
-      if (this.name.hasError('maxlength')) return 'You can enter at most 50 characters!';
+      if (this.name.hasError('maxlength'))
+        return 'You can enter at most 50 characters!';
     }
     return '';
   }
 
-  getDescriptionErrorMessage() {
-    if (this.birthYear.dirty || this.birthYear.touched) {
-      if (this.birthYear.hasError('required')) return 'You must enter a value!';
-      if (this.birthYear.hasError('maxlength')) return 'You can enter at most 100 characters!';
+  getNeptunErrorMessage() {
+    if (this.neptun.dirty || this.neptun.touched) {
+      if (this.neptun.hasError('required')) return 'You must enter a value!';
+      if (this.neptun.hasError('maxlength'))
+        return 'You can enter at most 6 characters!';
     }
     return '';
   }
 
-  getStartErrorMessage() {
-    if (this.nationality.dirty || this.nationality.touched) {
-      if (this.nationality.hasError('required')) return 'You must enter a value!';
-      if (this.nationality.hasError('regEx')) return 'You must enter a valid date time!';
+  getEmailErrorMessage() {
+    if (this.email.dirty || this.email.touched) {
+      if (this.email.hasError('required')) return 'You must enter a value!';
+      if (this.email.hasError('maxlength'))
+        return 'You can enter at most 100 characters!';
+    }
+    return '';
+  }
+
+  getJobErrorMessage() {
+    if (this.job.dirty || this.job.touched) {
+      if (this.job.hasError('required')) return 'You must enter a value!';
+    }
+    return '';
+  }
+
+  getIdsErrorMessage() {
+    if (this.ids.dirty || this.ids.touched) {
+      if (this.ids.hasError('required')) return 'You must enter a value!';
     }
     return '';
   }

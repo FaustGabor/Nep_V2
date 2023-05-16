@@ -22,6 +22,7 @@ export class SemesterListComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(semestersRequestedAction());
+    console.log(this.semester$);
   }
 
   constructor(private SemesterService: SemesterService, private store: Store) {}
