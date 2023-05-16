@@ -16,6 +16,7 @@ import {
 import { Teacher, Teacher_Jobs } from '../../data/Teacher.data';
 import { TeacherService } from '../teacher.service';
 import { TeacherModel } from '../store/teacher.model';
+import { SubjectTable } from '../../data/Subject.data';
 
 @Component({
   selector: 'app-teacher-create',
@@ -36,14 +37,14 @@ export class TeacherCreateComponent implements OnInit {
 
   ngOnInit() {
     this.TeacherForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(50)]],
-      neptun: [
+      Name: ['', [Validators.required, Validators.maxLength(50)]],
+      Neptun: [
         '',
         [Validators.required, Validators.maxLength(6), Validators.minLength(6)],
       ],
-      email: ['', [Validators.required, Validators.maxLength(100)]],
-      job: ['', [Validators.required]],
-      ids: ['', [Validators.required]],
+      Email: ['', [Validators.required, Validators.maxLength(100)]],
+      Job: ['', [Validators.required]],
+      subjectids: ['', [Validators.required]],
     });
   }
 
@@ -56,7 +57,13 @@ export class TeacherCreateComponent implements OnInit {
     
     */
     teacherData.deleted = false;
-    teacherData.ids = [];
+    teacherData.subjectids = this.ids.toString().split(',');
+    teacherData.subjectids.forEach((x) => {
+      if (SubjectTable != undefined) {
+        const subject = SubjectTable._subject.find((a) => a.id === x);
+        if (subject != undefined) teacherData.subjects.push(subject);
+      }
+    });
     this.store.dispatch(teacherCreateAction(teacherData));
 
     this.TeacherForm.reset();
@@ -64,19 +71,19 @@ export class TeacherCreateComponent implements OnInit {
   }
 
   get name() {
-    return this.TeacherForm.get('name');
+    return this.TeacherForm.get('Name');
   }
   get neptun() {
-    return this.TeacherForm.get('neptun');
+    return this.TeacherForm.get('Neptun');
   }
   get email() {
-    return this.TeacherForm.get('email');
+    return this.TeacherForm.get('Email');
   }
   get job() {
-    return this.TeacherForm.get('job');
+    return this.TeacherForm.get('Job');
   }
   get ids() {
-    return [this.TeacherForm.get('ids')];
+    return [this.TeacherForm.get('subjectids')];
   }
 
   getNameErrorMessage() {
@@ -109,13 +116,6 @@ export class TeacherCreateComponent implements OnInit {
   getJobErrorMessage() {
     if (this.job.dirty || this.job.touched) {
       if (this.job.hasError('required')) return 'You must enter a value!';
-    }
-    return '';
-  }
-
-  getIdsErrorMessage() {
-    if (this.ids.dirty || this.ids.touched) {
-      if (this.ids.hasError('required')) return 'You must enter a value!';
     }
     return '';
   }

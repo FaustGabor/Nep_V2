@@ -38,9 +38,9 @@ export class SemesterEffects {
             return semesterCreatedAction({
               semester: {
                 id,
-                Name: action.name,
-                Start_date: action.start_date,
-                End_date: action.end_date,
+                name: action.name,
+                start_date: action.start_date,
+                end_date: action.end_date,
                 deleted: false,
               },
             });
