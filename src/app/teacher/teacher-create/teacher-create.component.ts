@@ -17,6 +17,10 @@ import { Teacher, Teacher_Jobs } from '../../data/Teacher.data';
 import { TeacherService } from '../teacher.service';
 import { TeacherModel } from '../store/teacher.model';
 import { SubjectTable } from '../../data/Subject.data';
+import { SubjectModel } from '../../subject/store/subject.model';
+import { selectSubjects } from '../../subject/store/subject.selectors';
+import { Observable } from 'rxjs';
+import { subjectsRequestedAction } from '../../subject/store/subject.actions';
 
 @Component({
   selector: 'app-teacher-create',
@@ -27,6 +31,7 @@ export class TeacherCreateComponent implements OnInit {
   TeacherForm: FormGroup;
   teacher: Teacher;
   enums: string[] = Object.values(Teacher_Jobs).filter((v) => isNaN(Number(v)));
+  subject: SubjectModel[] = this.store.pipe(select(selectSubjects));
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +41,8 @@ export class TeacherCreateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(subjectsRequestedAction());
+
     this.TeacherForm = this.formBuilder.group({
       Name: ['', [Validators.required, Validators.maxLength(50)]],
       Neptun: [
@@ -45,27 +52,27 @@ export class TeacherCreateComponent implements OnInit {
       Email: ['', [Validators.required, Validators.maxLength(100)]],
       Job: ['', [Validators.required]],
       subjectids: ['', [Validators.required]],
+      subjects: [],
     });
   }
 
   onSubmit(teacherData: any) {
-    /*
-
-    this.teacher = new TeacherModel();
-    this.teacher.Name = teacherData.name;
-    this.service.createTeacher(this.teacher);
-    
-    */
     teacherData.deleted = false;
-    teacherData.subjectids = this.ids.toString().split(',');
     teacherData.subjects = [];
+    teacherData.subjectids = teacherData.subjectids.split(',');
 
     teacherData.subjectids.forEach((x) => {
-      if (SubjectTable != undefined) {
-        const subject = SubjectTable._subject.find((a) => a.id === x);
+      if (SubjectTable != undefined || this.subject != undefined) {
+        const subject = this.subject.find((a) => a.id === x);
+
+        console.log('subjectTable', subject);
+        console.log('subject', SubjectTable);
+        console.log('x', x);
+
         if (subject != undefined) teacherData.subjects.push(subject);
       }
     });
+
     this.store.dispatch(teacherCreateAction(teacherData));
 
     this.TeacherForm.reset();
@@ -84,7 +91,7 @@ export class TeacherCreateComponent implements OnInit {
   get job() {
     return this.TeacherForm.get('Job');
   }
-  get ids() {
+  get subjectids() {
     return [this.TeacherForm.get('subjectids')];
   }
 
