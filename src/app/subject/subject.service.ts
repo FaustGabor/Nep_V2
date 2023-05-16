@@ -9,7 +9,9 @@ import { Subject } from '../data/Subject.data';
 
 const SUBJECT_URL = 'api/subject';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SubjectService {
   constructor(private requestService: RequestService, private store: Store) {}
 

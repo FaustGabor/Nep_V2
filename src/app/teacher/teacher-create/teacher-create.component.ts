@@ -21,6 +21,7 @@ import { SubjectModel } from '../../subject/store/subject.model';
 import { selectSubjects } from '../../subject/store/subject.selectors';
 import { Observable } from 'rxjs';
 import { subjectsRequestedAction } from '../../subject/store/subject.actions';
+import { SubjectService } from '../../subject/subject.service';
 
 @Component({
   selector: 'app-teacher-create',
@@ -31,13 +32,13 @@ export class TeacherCreateComponent implements OnInit {
   TeacherForm: FormGroup;
   teacher: Teacher;
   enums: string[] = Object.values(Teacher_Jobs).filter((v) => isNaN(Number(v)));
-  //subject: SubjectModel[] = this.store.pipe(select(selectSubjects));
 
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
     private store: Store,
-    private service: TeacherService
+    private service: TeacherService,
+    private service_sub: SubjectService
   ) {}
 
   ngOnInit() {
@@ -62,15 +63,12 @@ export class TeacherCreateComponent implements OnInit {
     teacherData.subjectids = teacherData.subjectids.split(',');
 
     teacherData.subjectids.forEach((x) => {
-      if (SubjectTable != undefined) {
-        const subject = SubjectTable.subjects.find((a) => a.id === x);
+      const subject = this.service_sub.getSubject(x);
 
-        console.log('subjectTable', subject);
-        console.log('subject', SubjectTable);
-        console.log('x', x);
+      console.log('subject', subject);
+      console.log('x', x);
 
-        if (subject != undefined) teacherData.subjects.push(subject);
-      }
+      if (subject != undefined) teacherData.subjects.push(subject);
     });
 
     this.store.dispatch(teacherCreateAction(teacherData));
