@@ -4,8 +4,18 @@
   </a>
 </p>
 
+<div>
+  {{ teacher_notstore.Name }}
+</div>
+
+<div>
+  {{ teacher$.Name }}
+</div>
+
 <div>Taught subjects in each semesters</div>
-<table mat-table [dataSource]="teacher_subject$" class="mat-elevation-z8">
+
+<!--
+<table mat-table class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -29,3 +39,4 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+-->

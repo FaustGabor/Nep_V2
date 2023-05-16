@@ -22,8 +22,11 @@ export class TeacherListSubjectComponent implements OnInit {
     select(selectLoadedTeacher)
   );
 
+  teacher_notstore: Observable<any>;
+
   ngOnInit() {
     //this.store.dispatch(teachersubjectListAction({ teacherId: 1 }));
+
     this.route.paramMap
       .pipe(
         map((params) => {
@@ -33,6 +36,18 @@ export class TeacherListSubjectComponent implements OnInit {
         })
       )
       .subscribe();
+    /*
+    
+    this.TeacherService.getTeacher(2).subscribe(
+      (result) => (this.teacher_notstore$ = result)
+    );
+    
+
+    this.teacher_notstore$ = this.TeacherService.getTeacher(2);
+    console.log('Valami: ', this.teacher_notstore$);
+    */
+
+    this.GetData();
   }
 
   constructor(
@@ -41,4 +56,10 @@ export class TeacherListSubjectComponent implements OnInit {
     private router: Router,
     private store: Store
   ) {}
+
+  GetData(): void {
+    this.TeacherService.getTeacher(2).subscribe(
+      (result) => (this.teacher_notstore = result)
+    );
+  }
 }

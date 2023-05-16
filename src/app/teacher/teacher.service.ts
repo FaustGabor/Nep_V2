@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { RequestService } from '../request.service';
 import { HttpHeaders } from '@angular/common/http';
-import { map, debounceTime, switchMap } from 'rxjs/operators';
+import { map, debounceTime, switchMap, tap } from 'rxjs/operators';
 import { TeacherModel } from './store/teacher.model';
 import { Store } from '@ngrx/store';
 import { Teacher } from '../data/Teacher.data';
@@ -23,7 +23,7 @@ export class TeacherService {
   }
 
   getTeacher(teacherId: number): Observable<any> {
-    return this.requestService.get(`${TEACHER_URL}/${teacherId}`);
+    return this.requestService.get<Teacher>(`${TEACHER_URL}/${teacherId}`);
   }
 
   createTeacher(Teacher: TeacherModel): Observable<any> {
