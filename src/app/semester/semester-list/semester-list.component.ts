@@ -17,7 +17,7 @@ import { MatSortModule } from '@angular/material/sort';
   styleUrls: ['./semester-list.component.css'],
 })
 export class SemesterListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'Name', 'Start_date', 'End_date'];
+  displayedColumns: string[] = ['id', 'name', 'start_date', 'end_date'];
 
   semester$: Observable<SemesterModel[]> = this.store.pipe(
     select(selectSemesters)
