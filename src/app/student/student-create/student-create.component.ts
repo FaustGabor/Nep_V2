@@ -22,6 +22,7 @@ import { selectSubjects } from '../../subject/store/subject.selectors';
 import { Observable } from 'rxjs';
 import { subjectsRequestedAction } from '../../subject/store/subject.actions';
 import { SubjectService } from '../../subject/subject.service';
+import { regExValidator } from '../../validators/regex.validator';
 
 @Component({
   selector: 'app-student-create',
@@ -46,7 +47,12 @@ export class StudentCreateComponent implements OnInit {
       Name: ['', [Validators.required, Validators.maxLength(50)]],
       Neptun: [
         '',
-        [Validators.required, Validators.maxLength(6), Validators.minLength(6)],
+        [
+          regExValidator(/^[A-Za-z][A-Za-z0-9]{5}$/),
+          Validators.required,
+          Validators.maxLength(6),
+          Validators.minLength(6),
+        ],
       ],
       Email: ['', [Validators.required, Validators.maxLength(100)]],
       Field_of_study: ['', [Validators.required]],
@@ -82,12 +88,13 @@ export class StudentCreateComponent implements OnInit {
     return this.StudentForm.get('Email');
   }
   get field_of_study() {
-    return this.StudentForm.get('	Field_of_study');
+    return this.StudentForm.get('Field_of_study');
   }
   get subjectids() {
     return [this.StudentForm.get('subjectids')];
   }
 
+  /*
   getNameErrorMessage() {
     if (this.name.dirty || this.name.touched) {
       if (this.name.hasError('required')) return 'You must enter a value!';
@@ -122,4 +129,5 @@ export class StudentCreateComponent implements OnInit {
     }
     return '';
   }
+  */
 }

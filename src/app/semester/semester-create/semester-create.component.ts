@@ -16,6 +16,7 @@ import {
 import { Semester } from '../../data/Semester.data';
 import { SemesterService } from '../semester.service';
 import { SemesterModel } from '../store/semester.model';
+import { regExValidator } from '../../validators/regex.validator';
 
 @Component({
   selector: 'app-semester-create',
@@ -34,7 +35,14 @@ export class SemesterCreateComponent implements OnInit {
 
   ngOnInit() {
     this.SemesterForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(50)]],
+      name: [
+        '',
+        [
+          regExValidator(/^\d{4}\/\d{2}\/\d{1}$/),
+          Validators.required,
+          Validators.maxLength(50),
+        ],
+      ],
       start_date: [2000, [Validators.required]],
       end_date: [2000, [Validators.required]],
     });

@@ -22,6 +22,7 @@ import { selectSubjects } from '../../subject/store/subject.selectors';
 import { Observable } from 'rxjs';
 import { subjectsRequestedAction } from '../../subject/store/subject.actions';
 import { SubjectService } from '../../subject/subject.service';
+import { regExValidator } from '../../validators/regex.validator';
 
 @Component({
   selector: 'app-teacher-create',
@@ -48,6 +49,7 @@ export class TeacherCreateComponent implements OnInit {
       Name: ['', [Validators.required, Validators.maxLength(50)]],
       Neptun: [
         '',
+        regExValidator(/^[A-Za-z][A-Za-z0-9]{5}$/),
         [Validators.required, Validators.maxLength(6), Validators.minLength(6)],
       ],
       Email: ['', [Validators.required, Validators.maxLength(100)]],
