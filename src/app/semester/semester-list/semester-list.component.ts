@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SemesterService } from '../semester.service';
 import { Observable } from 'rxjs';
 import { Semester } from '../../data/Semester.data';
@@ -23,23 +23,26 @@ export class SemesterListComponent implements OnInit {
     select(selectSemesters)
   );
 
-  //sortsource =  new MatTableDataSource(this.semester$);
+  semester_sorted = new MatTableDataSource<SemesterModel>();
+
+  @ViewChild(MatSort) sort: MatSort;
 
   ngOnInit() {
     this.store.dispatch(semestersRequestedAction());
+    this.semester$.subscribe(
+      (data) => (this.semester_sorted = new MatTableDataSource(data))
+    );
   }
 
   constructor(private SemesterService: SemesterService, private store: Store) {}
 
   sortData(sort: Sort) {
-    console.log('sorting');
-    if (!sort.active || sort.direction === '') {
-    } else {
-      this.semester$ = this.semester$.pipe(
-        map((result) =>
+    this.semester_sorted.sort = this.sort;
 
-        )
-      );
+    if (sort.direction) {
+      console.log(`Sorted ${sort.direction}ending`);
+    } else {
+      console.log('Sorting cleared');
     }
   }
 }
