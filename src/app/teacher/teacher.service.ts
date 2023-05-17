@@ -9,7 +9,9 @@ import { Teacher } from '../data/Teacher.data';
 
 const TEACHER_URL = 'api/teacher';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TeacherService {
   constructor(private requestService: RequestService, private store: Store) {}
 
@@ -27,7 +29,6 @@ export class TeacherService {
   }
 
   createTeacher(Teacher: TeacherModel): Observable<any> {
-    console.log('valami', Teacher);
     return this.requestService.post(`${TEACHER_URL}/`, Teacher);
   }
 }

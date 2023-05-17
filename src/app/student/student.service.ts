@@ -9,7 +9,9 @@ import { Student } from '../data/Student.data';
 
 const STUDENT_URL = 'api/student';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class StudentService {
   constructor(private requestService: RequestService, private store: Store) {}
 
@@ -23,7 +25,7 @@ export class StudentService {
   }
 
   getStudent(studentId: number): Observable<any> {
-    return this.requestService.get(`${STUDENT_URL}/${studentId}`);
+    return this.requestService.get<Student>(`${STUDENT_URL}/${studentId}`);
   }
 
   createStudent(Student: StudentModel): Observable<any> {

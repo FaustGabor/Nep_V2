@@ -1,1 +1,75 @@
-add
+<h3>Create new subject</h3>
+<p>
+  <a mat-button routerLink="/subject">
+    <b>Back to subjects</b>
+  </a>
+</p>
+<form [formGroup]="SubjectForm" (ngSubmit)="onSubmit(SubjectForm.value)">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Subject's name</mat-label>
+      <input matInput placeholder="Name" formControlName="Name" />
+      <!--<mat-hint>Give the subject a name</mat-hint>
+      <mat-error *ngIf="name.invalid">{{ getNameErrorMessage() }}</mat-error>-->
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Subject's code</mat-label>
+      <input matInput placeholder="code" formControlName="Code" />
+      <!--<mat-hint>Give the subject a neptun code</mat-hint>
+      <mat-error *ngIf="neptun.invalid">{{
+        getNeptunErrorMessage()
+      }}</mat-error>-->
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Subjects's credit</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="credit"
+        formControlName="Credit"
+      />
+      <!--<mat-hint>Give the subject an eamil adress</mat-hint>
+      <mat-error *ngIf="email.invalid">{{ getEmailErrorMessage() }}</mat-error>-->
+    </mat-form-field>
+  </div>
+  <div>
+    <!--<mat-form-field appearance="outline">
+      <mat-label>Subjects's Job</mat-label>
+      <input matInput placeholder="Job" formControlName="job" />
+      <mat-hint>Give the subject a job</mat-hint>
+      <mat-error *ngIf="job.invalid">{{ getJobErrorMessage() }}</mat-error>
+    </mat-form-field>-->
+    <select formControlName="Department">
+      <option value="VIRT">VIRT</option>
+      <option value="RSZT">RSZT</option>
+      <option value="Matematika">Matematika</option>
+      <option value="egyéb">egyéb</option>
+    </select>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Subjects's semester IDs</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="IDs like 1,2 ..."
+        formControlName="semesterids"
+      />
+      <!--<mat-hint>Give the teacher some subjects(with id)</mat-hint>
+      <mat-error *ngIf="id_list.invalid">{{ getIdsErrorMessage() }}</mat-error>-->
+    </mat-form-field>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    type
+    [disabled]="SubjectForm.invalid"
+  >
+    Create
+  </button>
+</form>
+<p>Form Status: {{ SubjectForm.status }}</p>

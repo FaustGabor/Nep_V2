@@ -39,10 +39,11 @@ export class SubjectEffects {
               subject: {
                 id,
                 Name: action.Name,
-                Start_date: action.Start_date,
-                End_date: action.End_date,
-                subjectids: action.subjectids,
-                subjects: action.subjects,
+                Code: action.Code,
+                Credit: action.Credit,
+                Department: action.Department,
+                semesterids: action.semesterids,
+                semesters: action.semesters,
                 deleted: false,
               },
             });

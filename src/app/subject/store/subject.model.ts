@@ -1,3 +1,4 @@
+import { Semester } from '../../data/Semester.data';
 import { Subject, Subject_Department } from '../../data/Subject.data';
 
 export class SubjectModel implements Subject {
@@ -6,5 +7,7 @@ export class SubjectModel implements Subject {
   Code: string;
   Credit: number;
   Department: Subject_Department;
+  semesterids: number[];
+  semesters: Semester[];
   deleted: boolean;
 }

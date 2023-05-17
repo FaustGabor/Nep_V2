@@ -9,7 +9,9 @@ import { Semester } from '../data/Semester.data';
 
 const SEMESTER_URL = 'api/semester';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class SemesterService {
   constructor(private requestService: RequestService, private store: Store) {}
 
@@ -23,7 +25,7 @@ export class SemesterService {
   }
 
   getSemester(semesterId: number): Observable<any> {
-    return this.requestService.get(`${SEMESTER_URL}/${semesterId}`);
+    return this.requestService.get<Semester>(`${SEMESTER_URL}/${semesterId}`);
   }
 
   createSemester(Semester: SemesterModel): Observable<any> {

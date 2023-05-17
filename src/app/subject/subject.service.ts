@@ -25,7 +25,7 @@ export class SubjectService {
   }
 
   getSubject(subjectId: number): Observable<any> {
-    return this.requestService.get(`${SUBJECT_URL}/${subjectId}`);
+    return this.requestService.get<Subject>(`${SUBJECT_URL}/${subjectId}`);
   }
 
   createSubject(Subject: SubjectModel): Observable<any> {
