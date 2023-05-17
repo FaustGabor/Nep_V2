@@ -39,8 +39,9 @@ export class StudentEffects {
               student: {
                 id,
                 Name: action.Name,
-                Start_date: action.Start_date,
-                End_date: action.End_date,
+                Neptun: action.Neptun,
+                Email: action.Email,
+                Field_of_study: action.Field_of_study,
                 subjectids: action.subjectids,
                 subjects: action.subjects,
                 deleted: false,
