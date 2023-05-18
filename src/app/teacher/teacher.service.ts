@@ -25,6 +25,7 @@ export class TeacherService {
   }
 
   getTeacher(teacherId: number): Observable<any> {
+    console.log('get:id', teacherId);
     return this.requestService.get<Teacher>(`${TEACHER_URL}/${teacherId}`);
   }
 

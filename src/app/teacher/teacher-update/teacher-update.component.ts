@@ -16,6 +16,7 @@ import {
   teachersLoadedAction,
   teacherCreateAction,
   teacherRequestedAction,
+  teacherUpdateAction,
 } from '../store/teacher.actions';
 import { Teacher, Teacher_Jobs } from '../../data/Teacher.data';
 import { TeacherService } from '../teacher.service';
@@ -54,6 +55,8 @@ export class TeacherUpdateComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.store.dispatch(subjectsRequestedAction());
+
     this.route.paramMap
       .pipe(
         map((params) => {
@@ -110,7 +113,7 @@ export class TeacherUpdateComponent implements OnInit {
       if (subject != undefined) teacherData.subjects.push(subject);
     });
 
-    this.store.dispatch(teacherCreateAction(teacherData));
+    this.store.dispatch(teacherUpdateAction(teacherData));
 
     this.TeacherForm.reset();
     this.router.navigate(['/teacher']);
