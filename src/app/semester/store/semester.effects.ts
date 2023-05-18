@@ -7,6 +7,8 @@ import {
   SemesterActionTypes,
   semestersLoadedAction,
   semesterCreatedAction,
+  semesterLoadedAction,
+  semesterUpdatedAction,
 } from './semester.actions';
 import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/effects';
@@ -24,6 +26,17 @@ export class SemesterEffects {
           catchError(() => EMPTY)
         );
       })
+    )
+  );
+  semester = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SemesterActionTypes.semesterRequested),
+      switchMap((action) =>
+        this.semestersService.getSemester(action.semesterId).pipe(
+          map((semester) => semesterLoadedAction({ semester })),
+          catchError(() => EMPTY)
+        )
+      )
     )
   );
 
@@ -50,6 +63,30 @@ export class SemesterEffects {
       })
     )
   );
+
+  
+  updateSemester$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SemesterActionTypes.semesterUpdate),
+      switchMap((action) => {
+        return this.semestersService.updateSemester(action).pipe(
+          map((item: any) => {
+            return semesterUpdatedAction({
+              semester: {
+                id: action.id,
+                name: action.name,
+                start_date: action.start_date,
+                end_date: action.end_date,
+                deleted: false,
+              },
+            });
+          }),
+          catchError(() => EMPTY)
+        );
+      })
+    )
+  );
+  
 
   constructor(
     private actions$: Actions,

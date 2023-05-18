@@ -31,4 +31,8 @@ export class SemesterService {
   createSemester(Semester: SemesterModel): Observable<any> {
     return this.requestService.post(`${SEMESTER_URL}/`, Semester);
   }
+
+  updateSemester(Semester: SemesterModel): Observable<any> {
+    return this.requestService.put(`${SEMESTER_URL}/`, Semester);
+  }
 }

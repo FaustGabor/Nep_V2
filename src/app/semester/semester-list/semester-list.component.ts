@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SemesterService } from '../semester.service';
-import { Observable } from 'rxjs';
+import { distinctUntilChanged, Observable, Subject, debounceTime } from 'rxjs';
 import { Semester } from '../../data/Semester.data';
 import { Store, select } from '@ngrx/store';
 import { MatTableModule, MatTableDataSource } from '@angular/material/table';
@@ -17,13 +17,21 @@ import { MatSortModule } from '@angular/material/sort';
   styleUrls: ['./semester-list.component.css'],
 })
 export class SemesterListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'start_date', 'end_date'];
+  displayedColumns: string[] = [
+    'id',
+    'name',
+    'start_date',
+    'end_date',
+    'actions',
+  ];
 
   semester$: Observable<SemesterModel[]> = this.store.pipe(
     select(selectSemesters)
   );
 
   semester_sorted = new MatTableDataSource<SemesterModel>();
+
+  private searcher$ = new Subject<string>();
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -32,6 +40,15 @@ export class SemesterListComponent implements OnInit {
     this.semester$.subscribe(
       (data) => (this.semester_sorted = new MatTableDataSource(data))
     );
+
+    this.searcher$
+      .pipe(
+        debounceTime(300), // discard emitted values that take less than the specified time between output
+        distinctUntilChanged() // only emit when value has changed
+      )
+      .subscribe((filter: string) => {
+        this.semester_sorted.filter = filter.trim().toLowerCase();
+      });
   }
 
   constructor(private SemesterService: SemesterService, private store: Store) {}
@@ -44,5 +61,9 @@ export class SemesterListComponent implements OnInit {
     } else {
       console.log('Sorting cleared');
     }
+  }
+
+  applyFilter(filterValue: string) {
+    this.searcher$.next(filterValue);
   }
 }

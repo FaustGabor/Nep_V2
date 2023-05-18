@@ -19,6 +19,7 @@ import { SemesterListComponent } from './semester-list/semester-list.component';
 import * as fromSemesters from './store/semester.reducer';
 import { SemesterEffects } from './store/semester.effects';
 import { SemesterCreateComponent } from './semester-create/semester-create.component';
+import { SemesterUpdateComponent } from './semester-update/semester-update.component';
 import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
@@ -46,6 +47,7 @@ import { MatSortModule } from '@angular/material/sort';
     SemesterComponent,
     SemesterListComponent,
     SemesterCreateComponent,
+    SemesterUpdateComponent,
   ],
   providers: [SemesterService],
 })

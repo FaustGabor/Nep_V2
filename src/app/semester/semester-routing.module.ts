@@ -4,6 +4,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { SemesterListComponent } from './semester-list/semester-list.component';
 import { SemesterComponent } from './semester/semester.component';
 import { SemesterCreateComponent } from './semester-create/semester-create.component';
+import { SemesterUpdateComponent } from './semester-update/semester-update.component';
 
 const routes: Routes = [
   {
@@ -19,12 +20,10 @@ const routes: Routes = [
             path: '',
             component: SemesterListComponent,
           },
-          /*
-        {
-          path: 'details/:eventId',
-          component: EventDetailsComponent
-        },
-                */
+          {
+            path: 'edit/:semesterId',
+            component: SemesterUpdateComponent,
+          },
           {
             path: 'create',
             component: SemesterCreateComponent,

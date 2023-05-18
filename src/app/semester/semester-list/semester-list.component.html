@@ -4,6 +4,16 @@
   </a>
 </div>
 
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event.target.value)"
+    placeholder="search"
+    #input
+  />
+</mat-form-field>
+
 <table
   (matSortChange)="sortData($event)"
   matSort
@@ -29,6 +39,18 @@
   <ng-container matColumnDef="end_date">
     <th mat-sort-header mat-header-cell *matHeaderCellDef>End</th>
     <td mat-cell *matCellDef="let element">{{ element.end_date }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon
+        aria-hidden="false"
+        [routerLink]="['/semester/edit', element.id]"
+        aria-label="Edit"
+        >edit</mat-icon
+      >
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
