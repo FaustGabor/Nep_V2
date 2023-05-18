@@ -31,4 +31,18 @@ export class StudentListComponent implements OnInit {
   }
 
   constructor(private StudentService: StudentService, private store: Store) {}
+
+  sortData(sort: Sort) {
+    this.semester_sorted.sort = this.sort;
+
+    if (sort.direction) {
+      console.log(`Sorted ${sort.direction}ending`);
+    } else {
+      console.log('Sorting cleared');
+    }
+  }
+
+  applyFilter(filterValue: string) {
+    this.searcher$.next(filterValue);
+  }
 }
