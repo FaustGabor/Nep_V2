@@ -19,6 +19,8 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { TeacherListSubjectComponent } from './teacher-list-subject/teacher-list-subject.component';
 import * as fromTeachers from './store/teacher.reducer';
 import { TeacherEffects } from './store/teacher.effects';
+import * as fromSubjects from '../subject/store/subject.reducer';
+import { SubjectEffects } from '../subject/store/subject.effects';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
 
 @NgModule({
@@ -39,7 +41,12 @@ import { TeacherCreateComponent } from './teacher-create/teacher-create.componen
       fromTeachers.teacherFeatureKey,
       fromTeachers.teachersReducer
     ),
+    StoreModule.forFeature(
+      fromSubjects.subjectFeatureKey,
+      fromSubjects.subjectsReducer
+    ),
     EffectsModule.forFeature([TeacherEffects]),
+    EffectsModule.forFeature([SubjectEffects]),
   ],
   declarations: [
     TeacherComponent,

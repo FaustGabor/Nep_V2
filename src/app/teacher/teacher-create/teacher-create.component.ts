@@ -32,6 +32,7 @@ import { regExValidator } from '../../validators/regex.validator';
 export class TeacherCreateComponent implements OnInit {
   TeacherForm: FormGroup;
   subjectlist: SubjectModel[];
+
   subject$: Observable<SubjectModel[]> = this.store.pipe(
     select(selectSubjects)
   );
@@ -53,7 +54,7 @@ export class TeacherCreateComponent implements OnInit {
       Name: ['', [Validators.required, Validators.maxLength(50)]],
       Neptun: [
         '',
-        regExValidator(/^[A-Za-z][A-Za-z0-9]{5}$/),
+        //regExValidator(/^[A-Za-z][A-Za-z0-9]{5}$/),
         [Validators.required, Validators.maxLength(6), Validators.minLength(6)],
       ],
       Email: ['', [Validators.required, Validators.maxLength(100)]],
@@ -68,12 +69,14 @@ export class TeacherCreateComponent implements OnInit {
       this.subjectlist = subject as SubjectModel[];
     });
 
+    console.log('list: ', this.subjectlist);
+
     teacherData.deleted = false;
     teacherData.subjects = [];
     teacherData.subjectids = teacherData.subjectids.split(',');
 
     teacherData.subjectids.forEach((x) => {
-      const subject = this.subjectlist.find((y) => (y.id = x));
+      const subject = this.subjectlist.find((y) => y.id == x);
 
       console.log('subject', subject.Name);
       console.log('x', x);
