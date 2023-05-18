@@ -4,7 +4,16 @@
     <b>Back to semesters</b>
   </a>
 </p>
-<form [formGroup]="SemesterForm" (ngSubmit)="onSubmit(SemesterForm.value)">
+<form
+  [formGroup]="SemesterForm"
+  (ngSubmit)="onSubmit(SemesterForm.getRawValue())"
+>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Semester's ID</mat-label>
+      <input type="number" matInput placeholder="Id" formControlName="id" />
+    </mat-form-field>
+  </div>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Semester's name</mat-label>
