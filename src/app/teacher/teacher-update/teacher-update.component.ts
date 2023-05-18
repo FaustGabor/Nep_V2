@@ -5,13 +5,17 @@ import {
   FormControl,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import { selectNextTeacherId } from '../store/teacher.selectors';
+import {
+  selectNextTeacherId,
+  selectLoadedTeacher,
+} from '../store/teacher.selectors';
 import {
   TeacherActionTypes,
   teachersLoadedAction,
   teacherCreateAction,
+  teacherRequestedAction,
 } from '../store/teacher.actions';
 import { Teacher, Teacher_Jobs } from '../../data/Teacher.data';
 import { TeacherService } from '../teacher.service';
@@ -23,13 +27,14 @@ import { Observable } from 'rxjs';
 import { subjectsRequestedAction } from '../../subject/store/subject.actions';
 import { SubjectService } from '../../subject/subject.service';
 import { regExValidator } from '../../validators/regex.validator';
+import { map } from 'rxjs';
 
 @Component({
-  selector: 'app-teacher-create',
-  templateUrl: './teacher-create.component.html',
-  styleUrls: ['./teacher-create.component.css'],
+  selector: 'app-teacher-update',
+  templateUrl: './teacher-update.component.html',
+  styleUrls: ['./teacher-update.component.css'],
 })
-export class TeacherCreateComponent implements OnInit {
+export class TeacherUpdateComponent implements OnInit {
   TeacherForm: FormGroup;
   subjectlist: SubjectModel[];
 
@@ -44,13 +49,35 @@ export class TeacherCreateComponent implements OnInit {
     private router: Router,
     private store: Store,
     private service: TeacherService,
-    private service_sub: SubjectService
+    private service_sub: SubjectService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    this.store.dispatch(subjectsRequestedAction());
+    this.route.paramMap
+      .pipe(
+        map((params) => {
+          return this.store.dispatch(
+            teacherRequestedAction({ teacherId: +params.get('teacherId') })
+          );
+        })
+      )
+      .subscribe();
+
+    this.store.pipe(select(selectLoadedTeacher)).subscribe((teacher) => {
+      console.log(teacher);
+      if (teacher && this.TeacherForm) {
+        this.TeacherForm.controls.id.setValue(teacher.id);
+        this.TeacherForm.controls.Name.setValue(teacher.Name);
+        this.TeacherForm.controls.Neptun.setValue(teacher.Neptun);
+        this.TeacherForm.controls.Email.setValue(teacher.Email);
+        this.TeacherForm.controls.Job.setValue(teacher.Job);
+        this.TeacherForm.controls.subjectids.setValue(teacher.subjectids);
+      }
+    });
 
     this.TeacherForm = this.formBuilder.group({
+      id: [{ value: 0, disabled: true }, [Validators.required]],
       Name: ['', [Validators.required, Validators.maxLength(50)]],
       Neptun: [
         '',
@@ -103,39 +130,5 @@ export class TeacherCreateComponent implements OnInit {
   }
   get subjectids() {
     return [this.TeacherForm.get('subjectids')];
-  }
-
-  getNameErrorMessage() {
-    if (this.name.dirty || this.name.touched) {
-      if (this.name.hasError('required')) return 'You must enter a value!';
-      if (this.name.hasError('maxlength'))
-        return 'You can enter at most 50 characters!';
-    }
-    return '';
-  }
-
-  getNeptunErrorMessage() {
-    if (this.neptun.dirty || this.neptun.touched) {
-      if (this.neptun.hasError('required')) return 'You must enter a value!';
-      if (this.neptun.hasError('maxlength'))
-        return 'You can enter at most 6 characters!';
-    }
-    return '';
-  }
-
-  getEmailErrorMessage() {
-    if (this.email.dirty || this.email.touched) {
-      if (this.email.hasError('required')) return 'You must enter a value!';
-      if (this.email.hasError('maxlength'))
-        return 'You can enter at most 100 characters!';
-    }
-    return '';
-  }
-
-  getJobErrorMessage() {
-    if (this.job.dirty || this.job.touched) {
-      if (this.job.hasError('required')) return 'You must enter a value!';
-    }
-    return '';
   }
 }

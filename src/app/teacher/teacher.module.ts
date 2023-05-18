@@ -22,6 +22,7 @@ import { TeacherEffects } from './store/teacher.effects';
 import * as fromSubjects from '../subject/store/subject.reducer';
 import { SubjectEffects } from '../subject/store/subject.effects';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
+import { TeacherUpdateComponent } from './teacher-update/teacher-update.component';
 
 @NgModule({
   imports: [
@@ -53,6 +54,7 @@ import { TeacherCreateComponent } from './teacher-create/teacher-create.componen
     TeacherListComponent,
     TeacherCreateComponent,
     TeacherListSubjectComponent,
+    TeacherUpdateComponent,
   ],
   providers: [TeacherService],
 })

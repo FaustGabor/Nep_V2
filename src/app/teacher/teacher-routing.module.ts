@@ -5,6 +5,7 @@ import { TeacherListComponent } from './teacher-list/teacher-list.component';
 import { TeacherComponent } from './teacher/teacher.component';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
 import { TeacherListSubjectComponent } from './teacher-list-subject/teacher-list-subject.component';
+import { TeacherUpdateComponent } from './teacher-update/teacher-update.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
           {
             path: 'list_subject/:teacherId',
             component: TeacherListSubjectComponent,
+          },
+          {
+            path: 'edit/:teacherId',
+            component: TeacherUpdateComponent,
           },
           {
             path: 'create',

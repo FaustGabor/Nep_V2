@@ -30,5 +30,9 @@ export const teachersReducer = createReducer(
     ...state,
     teacher,
   })),
+  on(teacherLoadedAction, (state, { semester }) => ({
+    ...state,
+    teacher,
+  })),
   on(teacherCreateAction, (state) => ({ ...state }))
 );

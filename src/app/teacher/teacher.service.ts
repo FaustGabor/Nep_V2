@@ -31,4 +31,8 @@ export class TeacherService {
   createTeacher(Teacher: TeacherModel): Observable<any> {
     return this.requestService.post(`${TEACHER_URL}/`, Teacher);
   }
+
+  updateTeacher(Teacher: TeacherModel): Observable<any> {
+    return this.requestService.put(`${TEACHER_URL}/`, Teacher);
+  }
 }

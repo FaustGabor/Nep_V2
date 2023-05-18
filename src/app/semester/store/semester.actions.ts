@@ -40,9 +40,9 @@ export const semesterCreatedAction = createAction(
 
 export const semesterUpdateAction = createAction(
   SemesterActionTypes.semesterUpdate,
-  props<{ author: SemesterModel }>()
+  props<{ teacher: SemesterModel }>()
 );
 export const semesterUpdatedAction = createAction(
   SemesterActionTypes.semesterUpdated,
-  props<{ author: SemesterModel }>()
+  props<{ teacher: SemesterModel }>()
 );

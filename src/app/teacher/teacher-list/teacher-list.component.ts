@@ -14,7 +14,14 @@ import { teachersRequestedAction } from '../store/teacher.actions';
   styleUrls: ['./teacher-list.component.css'],
 })
 export class TeacherListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'Name', 'Neptun', 'Email', 'Job'];
+  displayedColumns: string[] = [
+    'id',
+    'Name',
+    'Neptun',
+    'Email',
+    'Job',
+    'actions',
+  ];
 
   teacher$: Observable<TeacherModel[]> = this.store.pipe(
     select(selectTeachers)

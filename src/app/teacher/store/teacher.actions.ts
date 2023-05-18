@@ -8,6 +8,11 @@ export enum TeacherActionTypes {
   teacherCreated = '[Teacher] Teacher Created',
   teachersubjectlist = '[Teacher] Teacher Subject list',
   teachersubjectlisted = '[Teacher] Teacher Subject listed',
+
+  teacherRequested = '[Teacher] Teacher Requested',
+  teacherLoaded = '[Teacher] Teacher Loaded',
+  teacherUpdate = '[Teacher] Teacher update',
+  teacherUpdated = '[Teacher] Teacher updated',
 }
 
 // get teachers:
@@ -34,5 +39,23 @@ export const teacherCreateAction = createAction(
 );
 export const teacherCreatedAction = createAction(
   TeacherActionTypes.teacherCreated,
+  props<{ teacher: TeacherModel }>()
+);
+
+export const teacherRequestedAction = createAction(
+  TeacherActionTypes.teacherRequested,
+  props<{ teacherId: number }>()
+);
+export const teacherLoadedAction = createAction(
+  TeacherActionTypes.teacherLoaded,
+  props<{ teacher: TeacherModel }>()
+);
+
+export const teacherUpdateAction = createAction(
+  TeacherActionTypes.teacherUpdate,
+  props<{ teacher: TeacherModel }>()
+);
+export const teacherUpdatedAction = createAction(
+  TeacherActionTypes.teacherUpdated,
   props<{ teacher: TeacherModel }>()
 );

@@ -68,6 +68,43 @@ export class TeacherEffects {
     )
   );
 
+  teacher = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TeacherActionTypes.teacherRequested),
+      switchMap((action) =>
+        this.teachersService.getTeacher(action.teacherId).pipe(
+          map((teacher) => teacherLoadedAction({ teacher })),
+          catchError(() => EMPTY)
+        )
+      )
+    )
+  );
+
+  updateTeacher$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(TeacherActionTypes.teacherUpdate),
+      switchMap((action) => {
+        return this.teachersService.updateTeacher(action).pipe(
+          map((item: any) => {
+            return teacherUpdatedAction({
+              semester: {
+                id: action.id,
+                Name: action.name,
+                Neptun: action.neptun,
+                Email: action.email,
+                Job: action.job,
+                subjectids: action.subjectids,
+                subjects: action.subjects,
+                deleted: false,
+              },
+            });
+          }),
+          catchError(() => EMPTY)
+        );
+      })
+    )
+  );
+
   constructor(
     private actions$: Actions,
     private teachersService: TeacherService,
