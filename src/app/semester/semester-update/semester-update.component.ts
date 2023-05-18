@@ -22,6 +22,7 @@ import { SemesterService } from '../semester.service';
 import { SemesterModel } from '../store/semester.model';
 import { regExValidator } from '../../validators/regex.validator';
 import { map } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-semester-update',
@@ -55,8 +56,12 @@ export class SemesterUpdateComponent implements OnInit {
       if (semester && this.SemesterForm) {
         this.SemesterForm.controls.id.setValue(semester.id);
         this.SemesterForm.controls.name.setValue(semester.name);
-        this.SemesterForm.controls.start_date.setValue(semester.start_date);
-        this.SemesterForm.controls.end_date.setValue(semester.end_date);
+        this.SemesterForm.controls.start_date.setValue(
+          formatDate(semester.start_date, 'yyyy-MM-dd', 'en')
+        );
+        this.SemesterForm.controls.end_date.setValue(
+          formatDate(semester.end_date, 'yyyy-MM-dd', 'en')
+        );
       }
     });
 

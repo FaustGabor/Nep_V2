@@ -30,6 +30,7 @@ export class TeacherEffects {
     )
   );
 
+  /*
   listTeachers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TeacherActionTypes.teachersubjectlist),
@@ -41,6 +42,7 @@ export class TeacherEffects {
       )
     )
   );
+  */
 
   createTeacher$ = createEffect(() =>
     this.actions$.pipe(
