@@ -31,7 +31,11 @@ import { regExValidator } from '../../validators/regex.validator';
 })
 export class TeacherCreateComponent implements OnInit {
   TeacherForm: FormGroup;
-  teacher: Teacher;
+  subjectlist: SubjectModel[];
+  subject$: Observable<SubjectModel[]> = this.store.pipe(
+    select(selectSubjects)
+  );
+
   enums: string[] = Object.values(Teacher_Jobs).filter((v) => isNaN(Number(v)));
 
   constructor(
@@ -60,14 +64,18 @@ export class TeacherCreateComponent implements OnInit {
   }
 
   onSubmit(teacherData: any) {
+    this.subject$.subscribe((subject) => {
+      this.subjectlist = subject as SubjectModel[];
+    });
+
     teacherData.deleted = false;
     teacherData.subjects = [];
     teacherData.subjectids = teacherData.subjectids.split(',');
 
     teacherData.subjectids.forEach((x) => {
-      const subject = this.service_sub.getSubject(x);
+      const subject = this.subjectlist.find((y) => (y.id = x));
 
-      console.log('subject', subject);
+      console.log('subject', subject.Name);
       console.log('x', x);
 
       if (subject != undefined) teacherData.subjects.push(subject);
