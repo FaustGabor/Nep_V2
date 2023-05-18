@@ -8,6 +8,8 @@ import {
   teachersLoadedAction,
   teacherCreatedAction,
   teachersubjectListedAction,
+  teacherLoadedAction,
+  teacherUpdatedAction,
 } from './teacher.actions';
 import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/effects';
@@ -87,7 +89,7 @@ export class TeacherEffects {
         return this.teachersService.updateTeacher(action).pipe(
           map((item: any) => {
             return teacherUpdatedAction({
-              semester: {
+              teacher: {
                 id: action.id,
                 Name: action.name,
                 Neptun: action.neptun,

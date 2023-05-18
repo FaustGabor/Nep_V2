@@ -5,6 +5,7 @@ import { teacherCreateAction } from './teacher.actions';
 import {
   teacherCreatedAction,
   teachersubjectListedAction,
+  teacherLoadedAction,
 } from './teacher.actions';
 import { TeacherModel } from './teacher.model';
 
@@ -30,7 +31,7 @@ export const teachersReducer = createReducer(
     ...state,
     teacher,
   })),
-  on(teacherLoadedAction, (state, { semester }) => ({
+  on(teacherLoadedAction, (state, { teacher }) => ({
     ...state,
     teacher,
   })),

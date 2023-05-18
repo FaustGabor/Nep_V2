@@ -46,6 +46,7 @@ export const teacherRequestedAction = createAction(
   TeacherActionTypes.teacherRequested,
   props<{ teacherId: number }>()
 );
+
 export const teacherLoadedAction = createAction(
   TeacherActionTypes.teacherLoaded,
   props<{ teacher: TeacherModel }>()
