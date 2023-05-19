@@ -19,6 +19,7 @@ import { StudentListComponent } from './student-list/student-list.component';
 import * as fromStudents from './store/student.reducer';
 import { StudentEffects } from './store/student.effects';
 import { StudentCreateComponent } from './student-create/student-create.component';
+import { StudentUpdateComponent } from './student-update/student-update.component';
 import { MatSortModule } from '@angular/material/sort';
 import * as fromSubjects from '../subject/store/subject.reducer';
 import { SubjectEffects } from '../subject/store/subject.effects';
@@ -53,6 +54,7 @@ import { SubjectEffects } from '../subject/store/subject.effects';
     StudentComponent,
     StudentListComponent,
     StudentCreateComponent,
+    StudentUpdateComponent,
   ],
   providers: [StudentService],
 })
