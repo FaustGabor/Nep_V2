@@ -4,6 +4,7 @@ import { AuthGuard } from '../auth/auth.guard';
 import { StudentListComponent } from './student-list/student-list.component';
 import { StudentComponent } from './student/student.component';
 import { StudentCreateComponent } from './student-create/student-create.component';
+import { StudentUpdateComponent } from './student-update/student-update.component';
 
 const routes: Routes = [
   {
@@ -19,12 +20,10 @@ const routes: Routes = [
             path: '',
             component: StudentListComponent,
           },
-          /*
-        {
-          path: 'details/:eventId',
-          component: EventDetailsComponent
-        },
-                */
+          {
+            path: 'edit/:studentId',
+            component: StudentUpdateComponent,
+          },
           {
             path: 'create',
             component: StudentCreateComponent,

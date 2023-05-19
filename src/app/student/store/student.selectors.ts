@@ -15,6 +15,14 @@ export const selectStudents = createSelector(
     return state.students;
   }
 );
+
+export const selectStudent = createSelector(
+  selectFeature,
+  (state: StudentFeatureState) => {
+    return state.student;
+  }
+);
+
 export const selectNextStudentId = createSelector(
   selectStudents,
   (student: StudentModel[]) => {

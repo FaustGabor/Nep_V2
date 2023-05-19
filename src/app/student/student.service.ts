@@ -31,4 +31,8 @@ export class StudentService {
   createStudent(Student: StudentModel): Observable<any> {
     return this.requestService.post(`${STUDENT_URL}/`, Student);
   }
+
+  updateStuden(Student: StudentModel): Observable<any> {
+    return this.requestService.put(`${STUDENT_URL}/`, Student);
+  }
 }

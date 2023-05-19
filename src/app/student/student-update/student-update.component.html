@@ -1,0 +1,69 @@
+<h3>Create new student</h3>
+<p>
+  <a mat-button routerLink="/student">
+    <b>Back to students</b>
+  </a>
+</p>
+<form
+  [formGroup]="StudentForm"
+  (ngSubmit)="onSubmit(StudentForm.getRawValue())"
+>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Student's ID</mat-label>
+      <input type="number" matInput placeholder="Id" formControlName="id" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Student's name</mat-label>
+      <input matInput placeholder="Name" formControlName="Name" />
+      <mat-hint>Give the student a name</mat-hint>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Student's Neptun</mat-label>
+      <input matInput placeholder="Neptun" formControlName="Neptun" />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Student's Email</mat-label>
+      <input matInput placeholder="Email" formControlName="Email" />
+    </mat-form-field>
+  </div>
+  <div>
+    <select formControlName="Field_of_study">
+      <option value="Mérnökinformatikus_Msc">Mérnökinformatikus_Msc</option>
+      <option value="Programtervező_informatikus_Msc">
+        Programtervező_informatikus_Msc
+      </option>
+      <option value="Mérnökinformatikus_Bsc">Mérnökinformatikus_Bsc</option>
+      <option value="Programtervező_informatikus_Bsc">
+        Programtervező_informatikus_Bsc
+      </option>
+      <option value="Gazdaságinformatikus_Bsc">Gazdaságinformatikus_Bsc</option>
+    </select>
+  </div>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Student's subject IDs</mat-label>
+      <input
+        type="text"
+        matInput
+        placeholder="IDs"
+        formControlName="subjectids"
+      />
+    </mat-form-field>
+  </div>
+  <button
+    mat-raised-button
+    color="primary"
+    type
+    [disabled]="StudentForm.invalid"
+  >
+    Create
+  </button>
+</form>
+<p>Form Status: {{ StudentForm.status }}</p>

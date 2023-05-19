@@ -7,6 +7,7 @@ import {
   StudentActionTypes,
   studentsLoadedAction,
   studentCreatedAction,
+  studentLoadedAction,
 } from './student.actions';
 import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/effects';
@@ -38,6 +39,43 @@ export class StudentEffects {
             return studentCreatedAction({
               student: {
                 id,
+                Name: action.Name,
+                Neptun: action.Neptun,
+                Email: action.Email,
+                Field_of_study: action.Field_of_study,
+                subjectids: action.subjectids,
+                subjects: action.subjects,
+                deleted: false,
+              },
+            });
+          }),
+          catchError(() => EMPTY)
+        );
+      })
+    )
+  );
+
+  student = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StudentActionTypes.studentRequested),
+      switchMap((action) =>
+        this.studentsService.getStudent(action.studentId).pipe(
+          map((student) => studentLoadedAction({ student })),
+          catchError(() => EMPTY)
+        )
+      )
+    )
+  );
+
+  updateStudent$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(StudentActionTypes.studentUpdate),
+      switchMap((action) => {
+        return this.studentsService.updateStudent(action).pipe(
+          map((item: any) => {
+            return studentUpdatedAction({
+              student: {
+                id: action.id,
                 Name: action.Name,
                 Neptun: action.Neptun,
                 Email: action.Email,
