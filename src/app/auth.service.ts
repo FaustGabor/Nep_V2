@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthService {
-
-  constructor() { }
+  constructor() {}
 
   getToken(): string {
     return 'secure-token-123';
@@ -12,5 +11,4 @@ export class AuthService {
   isAuthenticated(): boolean {
     return true;
   }
-
 }

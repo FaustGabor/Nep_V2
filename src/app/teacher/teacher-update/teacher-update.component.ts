@@ -75,7 +75,9 @@ export class TeacherUpdateComponent implements OnInit {
         this.TeacherForm.controls.Neptun.setValue(teacher.Neptun);
         this.TeacherForm.controls.Email.setValue(teacher.Email);
         this.TeacherForm.controls.Job.setValue(teacher.Job);
-        this.TeacherForm.controls.subjectids.setValue(teacher.subjectids);
+        this.TeacherForm.controls.subjectids.setValue(
+          teacher.subjectids.toString()
+        );
       }
     });
 

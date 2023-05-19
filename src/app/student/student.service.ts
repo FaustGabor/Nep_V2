@@ -32,7 +32,7 @@ export class StudentService {
     return this.requestService.post(`${STUDENT_URL}/`, Student);
   }
 
-  updateStuden(Student: StudentModel): Observable<any> {
+  updateStudent(Student: StudentModel): Observable<any> {
     return this.requestService.put(`${STUDENT_URL}/`, Student);
   }
 }

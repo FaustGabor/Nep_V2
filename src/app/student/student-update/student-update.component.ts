@@ -72,7 +72,9 @@ export class StudentUpdateComponent implements OnInit {
         this.StudentForm.controls.Field_of_study.setValue(
           student.Field_of_study
         );
-        this.StudentForm.controls.subjectids.setValue(student.subjectids);
+        this.StudentForm.controls.subjectids.setValue(
+          student.subjectids.toString()
+        );
       }
     });
 

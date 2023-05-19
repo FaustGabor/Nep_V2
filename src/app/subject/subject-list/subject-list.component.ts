@@ -1,6 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { SubjectService } from '../subject.service';
-import { Observable, Subject as SUB, debounceTime, distinctUntilChanged } from 'rxjs';
+import {
+  Observable,
+  Subject as SUB,
+  debounceTime,
+  distinctUntilChanged,
+} from 'rxjs';
 import { Subject } from '../../data/Subject.data';
 import { Store, select } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
@@ -18,7 +23,14 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./subject-list.component.css'],
 })
 export class SubjectListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'Name', 'Code', 'Credit', 'Department'];
+  displayedColumns: string[] = [
+    'id',
+    'Name',
+    'Code',
+    'Credit',
+    'Department',
+    'actions',
+  ];
 
   subject$: Observable<SubjectModel[]> = this.store.pipe(
     select(selectSubjects)

@@ -21,3 +21,10 @@ export const selectNextSubjectId = createSelector(
     return subject.length + 1;
   }
 );
+
+export const selectSubject = createSelector(
+  selectFeature,
+  (state: SubjectFeatureState) => {
+    return state.subject;
+  }
+);

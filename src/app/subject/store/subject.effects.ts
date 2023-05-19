@@ -7,6 +7,8 @@ import {
   SubjectActionTypes,
   subjectsLoadedAction,
   subjectCreatedAction,
+  subjectLoadedAction,
+  subjectUpdatedAction,
 } from './subject.actions';
 import { Store } from '@ngrx/store';
 import { concatLatestFrom } from '@ngrx/effects';
@@ -38,6 +40,45 @@ export class SubjectEffects {
             return subjectCreatedAction({
               subject: {
                 id,
+                Name: action.Name,
+                Code: action.Code,
+                Credit: action.Credit,
+                Department: action.Department,
+                semesterids: action.semesterids,
+                semesters: action.semesters,
+                deleted: false,
+              },
+            });
+          }),
+          catchError(() => EMPTY)
+        );
+      })
+    )
+  );
+
+  subject = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SubjectActionTypes.subjectRequested),
+      switchMap((action) =>
+        this.subjectsService.getSubject(action.subjectId).pipe(
+          map((subject) => subjectLoadedAction({ subject })),
+          catchError(() => EMPTY)
+        )
+      )
+    )
+  );
+
+  updateSubject$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(SubjectActionTypes.subjectCreate),
+      concatLatestFrom((action) => this.store.select(selectNextSubjectId)),
+      switchMap(([action, id]) => {
+        console.log(action, id);
+        return this.subjectsService.updateSubject(action).pipe(
+          map((item: any) => {
+            return subjectUpdatedAction({
+              subject: {
+                id: action.id,
                 Name: action.Name,
                 Code: action.Code,
                 Credit: action.Credit,

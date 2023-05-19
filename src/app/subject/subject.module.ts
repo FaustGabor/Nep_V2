@@ -20,6 +20,7 @@ import * as fromSubjects from './store/subject.reducer';
 import { SubjectEffects } from './store/subject.effects';
 import { SubjectCreateComponent } from './subject-create/subject-create.component';
 import { MatSortModule } from '@angular/material/sort';
+import { SubjectUpdateComponent } from './subject-update/subject-update.component';
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { MatSortModule } from '@angular/material/sort';
     SubjectComponent,
     SubjectListComponent,
     SubjectCreateComponent,
+    SubjectUpdateComponent,
   ],
   providers: [SubjectService],
 })

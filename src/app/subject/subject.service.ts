@@ -31,4 +31,8 @@ export class SubjectService {
   createSubject(Subject: SubjectModel): Observable<any> {
     return this.requestService.post(`${SUBJECT_URL}/`, Subject);
   }
+
+  updateSubject(Subject: SubjectModel): Observable<any> {
+    return this.requestService.put(`${SUBJECT_URL}/`, Subject);
+  }
 }

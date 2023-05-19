@@ -30,20 +30,6 @@ export class TeacherEffects {
     )
   );
 
-  /*
-  listTeachers$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(TeacherActionTypes.teachersubjectlist),
-      switchMap((action) =>
-        this.teachersService.getTeacher(action.teacherId).pipe(
-          map((teacher) => teachersubjectListedAction({ teacher })),
-          catchError(() => EMPTY)
-        )
-      )
-    )
-  );
-  */
-
   createTeacher$ = createEffect(() =>
     this.actions$.pipe(
       ofType(TeacherActionTypes.teacherCreate),
