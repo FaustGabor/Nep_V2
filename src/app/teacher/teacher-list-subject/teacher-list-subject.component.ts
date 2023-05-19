@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TeacherService } from '../teacher.service';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Teacher } from '../../data/Teacher.data';
 import { Store, select } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
@@ -21,6 +21,7 @@ export class TeacherListSubjectComponent implements OnInit {
 
   semesterid_from_pararm: string;
   subjects: SubjectModel[];
+  subject_o: Observable<SubjectModel[]>;
 
   ngOnInit() {
     this.route.paramMap
@@ -56,6 +57,7 @@ export class TeacherListSubjectComponent implements OnInit {
           });
         });
       }
+      this.subject_o = of(this.subjects);
     });
   }
 
