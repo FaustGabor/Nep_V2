@@ -19,6 +19,7 @@ import { SubjectListComponent } from './subject-list/subject-list.component';
 import * as fromSubjects from './store/subject.reducer';
 import { SubjectEffects } from './store/subject.effects';
 import { SubjectCreateComponent } from './subject-create/subject-create.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { SubjectCreateComponent } from './subject-create/subject-create.componen
     MatCardModule,
     MatIconModule,
     MatInputModule,
+    MatSortModule,
     MatProgressSpinnerModule,
     MatTableModule,
     StoreModule.forFeature(

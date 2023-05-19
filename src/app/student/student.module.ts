@@ -20,6 +20,8 @@ import * as fromStudents from './store/student.reducer';
 import { StudentEffects } from './store/student.effects';
 import { StudentCreateComponent } from './student-create/student-create.component';
 import { MatSortModule } from '@angular/material/sort';
+import * as fromSubjects from '../subject/store/subject.reducer';
+import { SubjectEffects } from '../subject/store/subject.effects';
 
 @NgModule({
   imports: [
@@ -41,6 +43,11 @@ import { MatSortModule } from '@angular/material/sort';
       fromStudents.studentsReducer
     ),
     EffectsModule.forFeature([StudentEffects]),
+    StoreModule.forFeature(
+      fromSubjects.subjectFeatureKey,
+      fromSubjects.subjectsReducer
+    ),
+    EffectsModule.forFeature([SubjectEffects]),
   ],
   declarations: [
     StudentComponent,

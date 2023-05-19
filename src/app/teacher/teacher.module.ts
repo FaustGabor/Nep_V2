@@ -23,6 +23,7 @@ import * as fromSubjects from '../subject/store/subject.reducer';
 import { SubjectEffects } from '../subject/store/subject.effects';
 import { TeacherCreateComponent } from './teacher-create/teacher-create.component';
 import { TeacherUpdateComponent } from './teacher-update/teacher-update.component';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   imports: [
@@ -38,6 +39,7 @@ import { TeacherUpdateComponent } from './teacher-update/teacher-update.componen
     MatInputModule,
     MatProgressSpinnerModule,
     MatTableModule,
+    MatSortModule,
     StoreModule.forFeature(
       fromTeachers.teacherFeatureKey,
       fromTeachers.teachersReducer
