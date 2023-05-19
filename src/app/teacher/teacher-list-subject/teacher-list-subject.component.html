@@ -4,18 +4,7 @@
   </a>
 </p>
 
-<div>
-  {{ teacher_notstore.Name }}
-</div>
-
-<div>
-  {{ teacher$.Name }}
-</div>
-
-<div>Taught subjects in each semesters</div>
-
-<!--
-<table mat-table class="mat-elevation-z8">
+<table mat-table [dataSource]="subjects" class="mat-elevation-z8">
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Id</th>
     <td mat-cell *matCellDef="let element">{{ element.id }}</td>
@@ -26,17 +15,21 @@
     <td mat-cell *matCellDef="let element">{{ element.Name }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="SemesterName">
-    <th mat-header-cell *matHeaderCellDef>SemesterName</th>
-    <td mat-cell *matCellDef="let element">{{ element.SemesterName }}</td>
+  <ng-container matColumnDef="Code">
+    <th mat-header-cell *matHeaderCellDef>Code</th>
+    <td mat-cell *matCellDef="let element">{{ element.Code }}</td>
   </ng-container>
 
-  <ng-container matColumnDef="Subjects">
-    <th mat-header-cell *matHeaderCellDef>Subjects</th>
-    <td mat-cell *matCellDef="let element">{{ element.allsubjects }}</td>
+  <ng-container matColumnDef="Credit">
+    <th mat-header-cell *matHeaderCellDef>Credit</th>
+    <td mat-cell *matCellDef="let element">{{ element.Credit }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="Department">
+    <th mat-header-cell *matHeaderCellDef>Department</th>
+    <td mat-cell *matCellDef="let element">{{ element.Department }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
--->

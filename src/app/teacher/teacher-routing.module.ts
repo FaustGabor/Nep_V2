@@ -22,7 +22,7 @@ const routes: Routes = [
             component: TeacherListComponent,
           },
           {
-            path: 'list_subject/:teacherId',
+            path: 'list_subject/:teacherId/:semesterId',
             component: TeacherListSubjectComponent,
           },
           {

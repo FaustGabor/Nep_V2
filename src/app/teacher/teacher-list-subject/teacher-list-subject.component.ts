@@ -6,9 +6,10 @@ import { Store, select } from '@ngrx/store';
 import { MatTableModule } from '@angular/material/table';
 import { TeacherModel } from '../store/teacher.model';
 import { selectLoadedTeacher } from '../store/teacher.selectors';
-import { teachersubjectListAction } from '../store/teacher.actions';
+import { teacherRequestedAction } from '../store/teacher.actions';
 import { map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SubjectModel } from '../../subject/store/subject.model';
 
 @Component({
   selector: 'app-teacher-list-subject',
@@ -16,26 +17,46 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./teacher-list-subject.component.css'],
 })
 export class TeacherListSubjectComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'Name', 'SemesterName', 'Subjects'];
+  displayedColumns: string[] = ['id', 'Name', 'Code', 'Credit', 'Department'];
 
-  teacher$: Observable<TeacherModel> = this.store.pipe(
-    select(selectLoadedTeacher)
-  );
-
-  teacher_notstore: Observable<any>;
+  semesterid_from_pararm: string;
+  subjects: SubjectModel[];
 
   ngOnInit() {
-    //this.store.dispatch(teachersubjectListAction({ teacherId: 1 }));
-
     this.route.paramMap
       .pipe(
         map((params) => {
           return this.store.dispatch(
-            teachersubjectListAction({ teacherId: +params.get('teacherId') })
+            teacherRequestedAction({ teacherId: +params.get('teacherId') })
           );
         })
       )
       .subscribe();
+
+    this.route.paramMap
+      .pipe(
+        map((params) => {
+          return (this.semesterid_from_pararm = params.get('semesterId'));
+        })
+      )
+      .subscribe();
+
+    this.subjects = [];
+    this.store.pipe(select(selectLoadedTeacher)).subscribe((teacher) => {
+      if (teacher.subjects != null || teacher.subjects != undefined) {
+        teacher.subjects.forEach((x) => {
+          x.semesterids.forEach((y) => {
+            console.log('x', x);
+            console.log('y', y);
+            console.log('semesterid', this.semesterid_from_pararm);
+            if (y == Number(this.semesterid_from_pararm)) {
+              this.subjects.push(x);
+              console.log('pushed');
+            }
+          });
+        });
+      }
+    });
   }
 
   constructor(
