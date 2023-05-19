@@ -6,12 +6,12 @@
 </p>
 <form [formGroup]="SubjectForm" (ngSubmit)="onSubmit(SubjectForm.getRawValue())">
   <div>
+  <div>
     <mat-form-field appearance="outline">
       <mat-label>Subject's ID</mat-label>
       <input type="number" matInput placeholder="Id" formControlName="id" />
     </mat-form-field>
   </div>
-  <div>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Subject's name</mat-label>

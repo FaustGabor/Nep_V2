@@ -38,7 +38,7 @@ export const subjectUpdatedAction = createAction(
   props<{ subject: SubjectModel }>()
 );
 
-export const ssubjectRequestedAction = createAction(
+export const subjectRequestedAction = createAction(
   SubjectActionTypes.subjectRequested,
   props<{ subjectId: number }>()
 );
