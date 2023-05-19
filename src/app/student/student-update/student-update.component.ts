@@ -7,10 +7,7 @@ import {
 } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Store, select } from '@ngrx/store';
-import {
-  selectNextStudentId,
-  selectLoadedStudent,
-} from '../store/student.selectors';
+import { selectNextStudentId, selectStudent } from '../store/student.selectors';
 import {
   StudentActionTypes,
   studentsLoadedAction,
@@ -65,14 +62,16 @@ export class StudentUpdateComponent implements OnInit {
       )
       .subscribe();
 
-    this.store.pipe(select(selectLoadedStudent)).subscribe((student) => {
+    this.store.pipe(select(selectStudent)).subscribe((student) => {
       console.log(student);
       if (student && this.StudentForm) {
         this.StudentForm.controls.id.setValue(student.id);
         this.StudentForm.controls.Name.setValue(student.Name);
         this.StudentForm.controls.Neptun.setValue(student.Neptun);
         this.StudentForm.controls.Email.setValue(student.Email);
-        this.StudentForm.controls.Job.setValue(student.Field_of_study);
+        this.StudentForm.controls.Field_of_study.setValue(
+          student.Field_of_study
+        );
         this.StudentForm.controls.subjectids.setValue(student.subjectids);
       }
     });
