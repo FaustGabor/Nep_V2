@@ -70,10 +70,8 @@ export class SubjectEffects {
 
   updateSubject$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(SubjectActionTypes.subjectCreate),
-      concatLatestFrom((action) => this.store.select(selectNextSubjectId)),
-      switchMap(([action, id]) => {
-        console.log(action, id);
+      ofType(SubjectActionTypes.subjectUpdate),
+      switchMap((action) => {
         return this.subjectsService.updateSubject(action).pipe(
           map((item: any) => {
             return subjectUpdatedAction({

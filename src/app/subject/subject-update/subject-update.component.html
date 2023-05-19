@@ -4,8 +4,10 @@
     <b>Back to subjects</b>
   </a>
 </p>
-<form [formGroup]="SubjectForm" (ngSubmit)="onSubmit(SubjectForm.getRawValue())">
-  <div>
+<form
+  [formGroup]="SubjectForm"
+  (ngSubmit)="onSubmit(SubjectForm.getRawValue())"
+>
   <div>
     <mat-form-field appearance="outline">
       <mat-label>Subject's ID</mat-label>

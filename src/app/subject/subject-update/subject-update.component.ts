@@ -12,6 +12,7 @@ import {
   SubjectActionTypes,
   subjectsLoadedAction,
   subjectCreateAction,
+  subjectUpdateAction,
 } from '../store/subject.actions';
 import { Subject, Subject_Department } from '../../data/Subject.data';
 import { SubjectService } from '../subject.service';
@@ -65,6 +66,7 @@ export class SubjectUpdateComponent implements OnInit {
       console.log(subject);
       if (subject && this.SubjectForm) {
         this.SubjectForm.controls.id.setValue(subject.id);
+        this.SubjectForm.controls.Name.setValue(subject.Name);
         this.SubjectForm.controls.Code.setValue(subject.Code);
         this.SubjectForm.controls.Credit.setValue(subject.Credit);
         this.SubjectForm.controls.Department.setValue(subject.Department);
@@ -96,7 +98,7 @@ export class SubjectUpdateComponent implements OnInit {
       if (semester != undefined) subjectData.semesters.push(semester);
     });
 
-    this.store.dispatch(subjectCreateAction(subjectData));
+    this.store.dispatch(subjectUpdateAction(subjectData));
 
     this.SubjectForm.reset();
     this.router.navigate(['/subject']);
