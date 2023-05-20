@@ -4,8 +4,36 @@
   </a>
 </div>
 
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Teacher Id</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Teacher Id"
+      [(ngModel)]="teacherId"
+    />
+  </mat-form-field>
+</div>
+
+<div>
+  <mat-form-field appearance="outline">
+    <mat-label>Semester Id</mat-label>
+    <input
+      matInput
+      type="number"
+      placeholder="Semester Id"
+      [(ngModel)]="semesterId"
+    />
+  </mat-form-field>
+</div>
+
 <div style="margin-bottom: 10px">
-  <a mat-mini-fab routerLink="/teacher/list_subject/1/1" color="primary">
+  <a
+    mat-mini-fab
+    routerLink="['/teacher/list_subject',teacherId,semesterId]"
+    color="primary"
+  >
     <div>List</div>
   </a>
 </div>
