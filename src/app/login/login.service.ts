@@ -23,4 +23,8 @@ export class LoginService {
     this.auth.setToken(user);
     return this.requestService.post(`${Login_URL}/`, user);
   }
+
+  Logout() {
+    this.auth.Logout();
+  }
 }

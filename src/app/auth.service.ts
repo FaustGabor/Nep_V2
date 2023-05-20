@@ -14,13 +14,16 @@ export class AuthService {
     else return this.user.token;
   }
 
+  Logout() {
+    this.user = null;
+  }
+
   setToken(user_: User) {
     console.log(user_);
     this.user = user_;
   }
 
   isAuthenticated(): boolean {
-    return true;
-    //return this.user != null;
+    return this.user != null;
   }
 }

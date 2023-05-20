@@ -2,10 +2,12 @@
   <div>
     <mat-form-field appearance="outline">
       <mat-label>User's name</mat-label>
-      <input matInput placeholder="Name" formControlName="name" />
+      <input matInput placeholder="Name" formControlName="Name" />
     </mat-form-field>
   </div>
   <button mat-raised-button color="primary" type [disabled]="LoginForm.invalid">
     Login
   </button>
 </form>
+
+<button (click)="logout()" mat-raised-button color="primary">Logout</button>

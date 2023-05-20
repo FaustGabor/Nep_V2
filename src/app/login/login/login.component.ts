@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.LoginForm = this.formBuilder.group({
-      name: ['', [Validators.required, Validators.maxLength(50)]],
+      Name: ['', [Validators.required, Validators.maxLength(50)]],
     });
 
     this.store.dispatch(studentsRequestedAction());
@@ -63,18 +63,18 @@ export class LoginComponent implements OnInit {
       this.teacherlist = teacher as User[];
     });
 
-    this.login_user = this.studentlist.find(
-      (x) => (x.department = LoginData.Name)
-    );
+    console.log(this.studentlist);
+    console.log(this.teacherlist);
+    console.log(LoginData.Name);
+
+    this.login_user = this.studentlist.find((x) => x.Name == LoginData.Name);
     if (this.login_user == null)
-      this.login_user = this.teacherlist.find(
-        (x) => (x.department = LoginData.Name)
-      );
+      this.login_user = this.teacherlist.find((x) => x.Name == LoginData.Name);
 
     if (this.login_user != null) {
       this.service.Login(this.login_user);
     } else {
-      LoginData.Name = 'No such user';
+      console.log('No such user');
     }
     this.LoginForm.reset();
     this.router.navigate(['/']);
@@ -82,5 +82,10 @@ export class LoginComponent implements OnInit {
 
   get name() {
     return this.LoginForm.get('name');
+  }
+
+  logout() {
+    console.log('logout');
+    this.service.Logout();
   }
 }
