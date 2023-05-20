@@ -13,6 +13,7 @@ export class LoginService {
   constructor(private requestService: RequestService) {}
 
   Login(name: string): Observable<any> {
-    return this.requestService.get<string>(`${Login_URL}/${name}`);
+    console.log('login', name);
+    return this.requestService.post(`${Login_URL}/`, name);
   }
 }
