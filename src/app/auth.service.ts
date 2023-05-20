@@ -2,13 +2,23 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class AuthService {
-  constructor() {}
+  constructor() {
+    this.usertoken = '';
+  }
+
+  usertoken: string;
 
   getToken(): string {
-    return 'secure-token-123';
+    return this.usertoken;
+  }
+
+  setToken(username: string) {
+    console.log(name);
+    username = '1';
+    if (username == '1') this.usertoken = '1';
   }
 
   isAuthenticated(): boolean {
-    return true;
+    return this.usertoken != '';
   }
 }

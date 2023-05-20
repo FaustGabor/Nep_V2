@@ -25,7 +25,6 @@ const routes: Routes = [
     path: 'semester',
     loadChildren: () =>
       import('./semester/semester.module').then((m) => m.SemesterModule),
-    canLoad: [AuthGuard],
   },
   {
     path: 'login',
