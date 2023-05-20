@@ -21,12 +21,16 @@ const routes: Routes = [
       import('./student/student.module').then((m) => m.StudentModule),
     canLoad: [AuthGuard],
   },
-
   {
     path: 'semester',
     loadChildren: () =>
       import('./semester/semester.module').then((m) => m.SemesterModule),
     canLoad: [AuthGuard],
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
   },
   {
     path: 'books',
