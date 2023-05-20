@@ -63,9 +63,13 @@ export class LoginComponent implements OnInit {
       this.teacherlist = teacher as User[];
     });
 
-    this.login_user = this.studentlist.find((x) => (x.Name = LoginData.Name));
+    this.login_user = this.studentlist.find(
+      (x) => (x.department = LoginData.Name)
+    );
     if (this.login_user == null)
-      this.login_user = this.teacherlist.find((x) => (x.Name = LoginData.Name));
+      this.login_user = this.teacherlist.find(
+        (x) => (x.department = LoginData.Name)
+      );
 
     if (this.login_user != null) {
       this.service.Login(this.login_user);
