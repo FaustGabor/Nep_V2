@@ -5,7 +5,6 @@ export enum Roles {
 }
 
 export interface User {
-  Name: string;
   department: string;
   birth_year: Date;
   token: string;
