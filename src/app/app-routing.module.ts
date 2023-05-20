@@ -25,12 +25,12 @@ const routes: Routes = [
     path: 'semester',
     loadChildren: () =>
       import('./semester/semester.module').then((m) => m.SemesterModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModule),
-    canLoad: [AuthGuard],
   },
   {
     path: 'books',

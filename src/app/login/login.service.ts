@@ -4,7 +4,7 @@ import { RequestService } from '../request.service';
 import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
-import { AuthInterceptor } from '../http-interceptors/auth-interceptor';
+import { AuthService } from '../auth.service';
 
 const Login_URL = 'api/login';
 
@@ -14,7 +14,7 @@ const Login_URL = 'api/login';
 export class LoginService {
   constructor(
     private requestService: RequestService,
-    private auth: AuthInterceptor
+    private auth: AuthService
   ) {}
 
   Login(name: string): Observable<any> {
