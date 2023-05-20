@@ -5,6 +5,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { AuthService } from '../auth.service';
+import { User } from '../data/User';
 
 const Login_URL = 'api/login';
 
@@ -17,9 +18,9 @@ export class LoginService {
     private auth: AuthService
   ) {}
 
-  Login(name: string): Observable<any> {
-    console.log('login post', name);
-    this.auth.setToken(name);
-    return this.requestService.post(`${Login_URL}/`, name);
+  Login(user: User): Observable<any> {
+    console.log('login post', user);
+    this.auth.setToken(user);
+    return this.requestService.post(`${Login_URL}/`, user);
   }
 }

@@ -1,7 +1,8 @@
 import { Subject } from '../../data/Subject.data';
 import { Teacher, Teacher_Jobs } from '../../data/Teacher.data';
+import { User, Roles } from '../../data/User';
 
-export class TeacherModel implements Teacher {
+export class TeacherModel implements Teacher,User {
   id: number;
   Neptun: string;
   Name: string;
@@ -10,4 +11,8 @@ export class TeacherModel implements Teacher {
   subjects: Subject[];
   subjectids: number[];
   deleted: boolean;
+  department: string;
+  birth_year: Date;
+  token: string;
+  role: Roles[];
 }

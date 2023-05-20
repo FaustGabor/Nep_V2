@@ -16,6 +16,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login.service';
 import { LoginRoutingModule } from './login-routing.module';
+import { StudentEffects } from '../student/store/student.effects';
+import { TeacherEffects } from '../teacher/store/teacher.effects';
+import * as fromStudents from '../student/store/student.reducer';
+import * as fromTeachers from '../teacher/store/teacher.reducer';
 
 @NgModule({
   imports: [
@@ -31,6 +35,16 @@ import { LoginRoutingModule } from './login-routing.module';
     MatProgressSpinnerModule,
     MatTableModule,
     LoginRoutingModule,
+    StoreModule.forFeature(
+      fromStudents.studentFeatureKey,
+      fromStudents.studentsReducer
+    ),
+    EffectsModule.forFeature([StudentEffects]),
+    StoreModule.forFeature(
+      fromTeachers.teacherFeatureKey,
+      fromTeachers.teachersReducer
+    ),
+    EffectsModule.forFeature([TeacherEffects]),
   ],
   declarations: [LoginComponent],
   providers: [LoginService],

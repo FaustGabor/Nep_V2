@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
+import { User } from './data/User';
 
 @Injectable()
 export class AuthService {
   constructor() {
-    this.usertoken = '';
+    this.user = null;
   }
 
-  usertoken: string;
+  user: User;
 
   getToken(): string {
-    return this.usertoken;
+    return this.user.token;
   }
 
-  setToken(username: string) {
-    console.log(name);
-    username = '1';
-    if (username == '1') this.usertoken = '1';
+  setToken(user_: User) {
+    console.log(user_);
+    this.user = user_;
   }
 
   isAuthenticated(): boolean {
-    return this.usertoken != '';
+    return this.user != null;
   }
 }

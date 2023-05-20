@@ -1,4 +1,5 @@
 import { Subject, SubjectTable } from './Subject.data';
+import { User, Roles } from './User';
 
 export enum Teacher_Jobs {
   docens = 'docens',
@@ -8,7 +9,7 @@ export enum Teacher_Jobs {
   egyéb = 'egyéb',
 }
 
-export interface Teacher {
+export interface Teacher extends User {
   id: number;
   Neptun: string;
   Name: string;
@@ -30,6 +31,11 @@ export class TeacherTable {
       subjectids: [1],
       subjects: [],
       deleted: false,
+      department: 'Valami',
+      birth_year: new Date(2021, 9, 1),
+      token:
+        'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2ODQ1ODA3NzcsImV4cCI6MTcxNjExNjc3NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiMU5hbWVAZW1haWwuY29tIiwiR2l2ZW5OYW1lIjoiMU5hbWUiLCJTdXJuYW1lIjoiMU5hbWUiLCJFbWFpbCI6IjFOYW1lQGVtYWlsLmNvbSIsIlJvbGUiOlsiQWRtaW4iLCJUZWFjaGVyIl0sIklkIjoiMSJ9.keigstAfsiulDYf8PqlLFwOKZWPYNdR_nMWIdpOn01w',
+      role: [Roles.Admin, Roles.Teacher],
     },
     {
       id: 2,
@@ -40,6 +46,10 @@ export class TeacherTable {
       subjectids: [2],
       subjects: [],
       deleted: false,
+      department: 'Valami',
+      birth_year: new Date(2021, 9, 1),
+      token: '',
+      role: [],
     },
   ];
 
