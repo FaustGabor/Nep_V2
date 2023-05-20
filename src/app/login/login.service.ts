@@ -4,11 +4,15 @@ import { RequestService } from '../request.service';
 import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
 
-const STUDENT_URL = 'api/login';
+const Login_URL = 'api/login';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   constructor(private requestService: RequestService) {}
+
+  Login(name: string): Observable<any> {
+    return this.requestService.get<string>(`${Login_URL}/${name}`);
+  }
 }

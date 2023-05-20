@@ -1,2 +1,11 @@
-<p>login works!</p>
-<router-outlet></router-outlet>
+<form [formGroup]="LoginForm" (ngSubmit)="onSubmit(LoginForm.value)">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>User's name</mat-label>
+      <input matInput placeholder="Name" formControlName="name" />
+    </mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" type [disabled]="LoginForm.invalid">
+    Login
+  </button>
+</form>
