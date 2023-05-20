@@ -16,7 +16,7 @@ export class RequestService {
   }
 
   post<T>(url: string, body: any, options: object = {}): Observable<T> {
-    console.log('post<t> was called');
+    console.log('http request was sent');
     return this.http
       .post<T>(url, body, options)
       .pipe(catchError(this.handleError));
@@ -33,6 +33,7 @@ export class RequestService {
   }
 
   private handleError(error: HttpErrorResponse) {
+    console.log('request error');
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
