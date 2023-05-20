@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { RequestService } from '../request.service';
 import { HttpHeaders } from '@angular/common/http';
 import { map, debounceTime, switchMap } from 'rxjs/operators';
+import { Store } from '@ngrx/store';
 
 const Login_URL = 'api/login';
 
@@ -10,10 +11,9 @@ const Login_URL = 'api/login';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private requestService: RequestService) {}
+  constructor(private requestService: RequestService, private store: Store) {}
 
   Login(name: string): Observable<any> {
-    console.log('login', name);
     return this.requestService.post(`${Login_URL}/`, name);
   }
 }

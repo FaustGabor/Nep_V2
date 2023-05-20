@@ -33,10 +33,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(semesterData: any) {
-    semesterData.deleted = false;
-
     this.service.Login(semesterData.name);
-
     this.LoginForm.reset();
     this.router.navigate(['/']);
   }
