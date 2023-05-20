@@ -23,6 +23,7 @@ import { StudentUpdateComponent } from './student-update/student-update.componen
 import { MatSortModule } from '@angular/material/sort';
 import * as fromSubjects from '../subject/store/subject.reducer';
 import { SubjectEffects } from '../subject/store/subject.effects';
+import { StudentListSubjectComponent } from './student-list-subject/student-list-subject.component';
 
 @NgModule({
   imports: [
@@ -55,6 +56,7 @@ import { SubjectEffects } from '../subject/store/subject.effects';
     StudentListComponent,
     StudentCreateComponent,
     StudentUpdateComponent,
+    StudentListSubjectComponent,
   ],
   providers: [StudentService],
 })

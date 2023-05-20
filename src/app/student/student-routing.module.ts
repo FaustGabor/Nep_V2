@@ -5,6 +5,7 @@ import { StudentListComponent } from './student-list/student-list.component';
 import { StudentComponent } from './student/student.component';
 import { StudentCreateComponent } from './student-create/student-create.component';
 import { StudentUpdateComponent } from './student-update/student-update.component';
+import { StudentListSubjectComponent } from './student-list-subject/student-list-subject.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,10 @@ const routes: Routes = [
           {
             path: '',
             component: StudentListComponent,
+          },
+          {
+            path: 'list_subject/:studentId/:semesterId',
+            component: StudentListSubjectComponent,
           },
           {
             path: 'edit/:studentId',
