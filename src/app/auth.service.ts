@@ -10,7 +10,8 @@ export class AuthService {
   user: User;
 
   getToken(): string {
-    return this.user.token;
+    if (this.user == null) return '';
+    else return this.user.token;
   }
 
   setToken(user_: User) {

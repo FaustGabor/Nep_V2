@@ -35,7 +35,6 @@ import * as fromTeachers from '../teacher/store/teacher.reducer';
     MatProgressSpinnerModule,
     MatTableModule,
     LoginRoutingModule,
-    /*
     StoreModule.forFeature(
       fromStudents.studentFeatureKey,
       fromStudents.studentsReducer
@@ -46,7 +45,6 @@ import * as fromTeachers from '../teacher/store/teacher.reducer';
       fromTeachers.teachersReducer
     ),
     EffectsModule.forFeature([TeacherEffects]),
-    */
   ],
   declarations: [LoginComponent],
   providers: [LoginService],
