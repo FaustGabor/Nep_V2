@@ -11,9 +11,10 @@ const Login_URL = 'api/login';
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private requestService: RequestService, private store: Store) {}
+  constructor(private requestService: RequestService) {}
 
   Login(name: string): Observable<any> {
+    console.log('login post', name);
     return this.requestService.post(`${Login_URL}/`, name);
   }
 }
