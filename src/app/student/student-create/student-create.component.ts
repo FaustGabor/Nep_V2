@@ -65,7 +65,7 @@ export class StudentCreateComponent implements OnInit {
     studentData.deleted = false;
     studentData.subjects = [];
     studentData.subjectids = studentData.subjectids.split(',');
-    studentData.department = 'ismeretlen';
+    //studentData.department = 'ismeretlen';
 
     studentData.subjectids.forEach((x) => {
       const subject = this.service_sub.getSubject(x);

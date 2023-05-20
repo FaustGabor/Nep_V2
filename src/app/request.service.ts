@@ -12,8 +12,6 @@ export class RequestService {
   constructor(private http: HttpClient) {}
 
   get<T>(url: string, options: object = {}): Observable<T> {
-    console.log('http request url', url);
-    console.log('http request options', options);
     return this.http.get<T>(url, options).pipe(catchError(this.handleError));
   }
 

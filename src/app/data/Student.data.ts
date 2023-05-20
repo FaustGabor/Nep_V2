@@ -9,7 +9,8 @@ export enum Student_Fields {
   Gazdaságinformatikus_Bsc = 'Gazdaságinformatikus_Bsc',
 }
 
-export interface Student extends User {
+export interface Student {
+  // extends User
   id: number;
   Neptun: string;
   Name: string;
@@ -31,11 +32,13 @@ export class StudentTable {
       subjectids: [1],
       subjects: [],
       deleted: false,
+      /*
       department: 'ismeretlen',
       birth_year: new Date(2021, 9, 1),
       token:
         'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE2ODQ1ODA3NzcsImV4cCI6MTcxNjExNjc3NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiMU5hbWVAZW1haWwuY29tIiwiR2l2ZW5OYW1lIjoiTmFtZTEiLCJTdXJuYW1lIjoiTmFtZTEiLCJFbWFpbCI6Ik5hbWUxQGVtYWlsLmNvbSIsIlJvbGUiOiJTdHVkZW50IiwiSWQiOiIxIn0.Xx551NvnZP9V797IAy4Vw4pPuX2wEGCRyUC7ZWWz8g0',
       role: [Roles.Student],
+      */
     },
     {
       id: 2,
@@ -46,10 +49,12 @@ export class StudentTable {
       subjectids: [2],
       subjects: [],
       deleted: false,
+      /*
       department: 'ismeretlen',
       birth_year: new Date(2021, 9, 1),
       token: '',
       role: [],
+      */
     },
   ];
 
