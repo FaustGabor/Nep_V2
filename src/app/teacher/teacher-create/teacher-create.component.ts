@@ -54,7 +54,7 @@ export class TeacherCreateComponent implements OnInit {
       Name: ['', [Validators.required, Validators.maxLength(50)]],
       Neptun: [
         '',
-        //regExValidator(/^[A-Za-z][A-Za-z0-9]{5}$/),
+        regExValidator(/^[A-Za-z][A-Za-z0-9]{5}$/),
         [Validators.required, Validators.maxLength(6), Validators.minLength(6)],
       ],
       Email: ['', [Validators.required, Validators.maxLength(100)]],
